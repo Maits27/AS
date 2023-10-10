@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>L4.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p><span style="font-size: 40px;">LABORATORIO 4 - MQTT Y NFS</span></p>
+<p><span style="font-size: 30px;">     3.1 MV1: Recolección de datos</span></p>
+<p>Esta MV debe contener un script que:</p>
+<ul>
+<li>Recoja el último dato de conversión de EUR a GBP. Se recomienda utilizar el comando que consulta CurrencyAPI descrito en la sección anterior.</li>
+<li>Envíe este dato a un topic MQTT llamado “EUR/GBP”, cuyo Broker reside en la MV2. Este script se debe ejecutar 1 vez cada minuto</li>
+</ul>
+<h2 id="mv1-3417116881">MV1 (34.171.168.81)</h2>
+<p>Script (stored in <code>/home/aingeru/labos/Labo4/EURtoGBP.sh</code>):</p>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash
+</span>
+<span class="hljs-comment"># Siendo mi API: cur_live_WZYCGv5j8zfy48v05R8WYx7agfzTswYfUXcxe78Y</span>
+
+<span class="hljs-comment"># Conseguir los datos | generar el JSON | conseguir la linea que tenga la palabra "value" | conseguir el valor después de ":" | quitar los espacios del valor</span>
+
+valor=$(curl <span class="hljs-string">"https://api.currencyapi.com/v3/latest?base_currency="</span>EUR<span class="hljs-string">"&amp;currencies="</span>GBP<span class="hljs-string">"&amp;apikey=cur_live_WZYCGv5j8zfy48v05R8WYx7agfzTswYfUXcxe78Y"</span> | python3 -m json.tool | grep value | cut -d <span class="hljs-string">":"</span> -f 2 | sed <span class="hljs-string">'s/ //g'</span>)
+
+mosquitto_pub -h 34.173.208.253 -t <span class="hljs-string">"EUR/GBP"</span> -m <span class="hljs-variable">$valor</span>
+</div></code></pre>
+<p>Escribir la siguiente línea en el fichero de <code>crontab -e</code>:</p>
+<pre class="hljs"><code><div>* * * * * /home/aingeru/labos/Labo4/EURtoGBP.sh
+</div></code></pre>
+<hr>
+<p><span style="font-size: 30px;">     3.2 MV2: Broker MQTT</span></p>
+<p>Esta MV debe cumplir 3 funciones:</p>
+<ul>
+<li>Ejecutar un Broker MQTT con Mosquitto.</li>
+<li>Tener una montada una carpeta NFS en /tmp/carpetaRemota. Esta carpeta se exporta desde MV3 y allí está ubicada en /datosNfs. La carpeta está montada de forma que MV2 puede modificar sus ficheros.</li>
+<li>Escribir cada mensaje que se envíe al topic EUR/GBP en un fichero llamado HistoricoEurGbp.txt que se ubica en /tmp/carpetaRemota.</li>
+</ul>
+<h2 id="mv2-34173208253">MV2 (34.173.208.253)</h2>
+<pre class="hljs"><code><div><span class="hljs-comment"># Crear la carpeta donde se montara la carpeta /DatosNfs</span>
+sudo mkdir /tmp/carpetaRemota
+
+<span class="hljs-comment"># Montar la carpeta /datosNfs en /ServidorMV3</span>
+sudo mount -t nfs 35.224.232.153:/datosNfs /tmp/carpetaRemota
+
+<span class="hljs-comment"># Configurar el servicio de mosquitto</span>
+sudo nano /etc/mosquitto/mosquitto.conf
+		<span class="hljs-comment">## FICHERO /etc/mosquitto/mosquitto.conf ##</span>
+			pid_file /var/run/mosquitto.pid
+			persistence <span class="hljs-literal">true</span>
+			persistence_location /var/lib/mosquitto/
+			log_dest file /var/<span class="hljs-built_in">log</span>/mosquitto/mosquitto.log
+			include_dir /etc/mosquitto/conf.d
+			listener 1883 0.0.0.0
+			allow_anonymous <span class="hljs-literal">true</span>
+		<span class="hljs-comment">####</span>
+
+<span class="hljs-comment"># Reiniciamos el servicio de mosquitto con la nueva configuración</span>
+sudo service mosquitto restart
+</div></code></pre>
+<p>Crear un script que ejecute el comando de <code>mosquitto</code>:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-comment"># Subscribirse a los mensajes del topic datosBroker y reenviarlos al fichero del servidor NFS</span>
+sudo mosquitto_sub -h localhost -t <span class="hljs-string">"EUR/GBP"</span> &gt; /tmp/carpetaRemota/HistoricoEurGbp.txt
+</div></code></pre>
+<p>Darle al script permisos de ejecución:</p>
+<pre class="hljs"><code><div>chmod u+x ServidorMV2.sh
+</div></code></pre>
+<p>Escribir la siguiente línea en el fichero de <code>crontab -e</code>:</p>
+<pre class="hljs"><code><div>* * * * * /home/maitane/ServidorMV2.sh
+</div></code></pre>
+<hr>
+<p><span style="font-size: 30px;">     3.3 MV3: Servidor NFS</span></p>
+<p>Esta MV contiene un servidor NFS y exporta su carpeta /datosNfs de la siguiente forma:</p>
+<ul>
+<li>A MV2, con permisos de lectura y escritura.</li>
+<li>A MV4, con permisos de sólo lectura.</li>
+</ul>
+<h2 id="mv3-35224232153">MV3 (35.224.232.153)</h2>
+<pre class="hljs"><code><div><span class="hljs-comment"># Crear la carpeta donde se almacenaran los datos</span>
+sudo mkdir  /datosNfs
+
+<span class="hljs-comment"># Editar el fichero de configuracion</span>
+sudo nano /etc/exports
+
+	<span class="hljs-comment">## AÑADIR LAS SIGUIENTES LINEAS ##</span>
+	/datosNfs       34.173.208.253(rw)
+	/datosNfs       34.172.134.50(ro)
+	<span class="hljs-comment">####</span>
+
+<span class="hljs-comment"># Comprobar que el archivo de configuracion es correcto</span>
+exportfs -ra
+
+<span class="hljs-comment"># Aplicar la configuracion de NFS</span>
+sudo exportfs -v
+
+<span class="hljs-comment"># Reiniciar el servicio</span>
+sudo service nfs-kernel-server restart
+
+<span class="hljs-comment"># Crear la carpeta para los datos del Broker</span>
+sudo touch datosBroker
+
+<span class="hljs-comment"># Permitir a otros usuarios la escritura en el archivo</span>
+sudo chmod o+w datosBroker 
+</div></code></pre>
+<hr>
+<p><span style="font-size: 30px;">     3.4 MV4: Servidor Web</span></p>
+<p>La funcionalidad principal de esta MV es recoger el último dato de conversión de Euro a Libra Esterlina e incluirlo en una web con la forma mostrada en la 1ª sección del documento. Para ello, se propone utilizar la funcionalidad “http.server” de Python: &lt;sudo python3 -m http.server 80&gt;</p>
+<p>Este comando sirve el directorio de un sistema de ficheros por HTTP en el puerto especificado (en el ejemplo, el 80).</p>
+<p>Si se ejecuta desde el directorio /home/unai/miWeb, ese será el directorio servido. Si además existe un fichero index.html en el directorio, este será el que se muestre por defecto. Este fichero puede contener texto plano o código HTML (p.e., se puede usar <br> para crear un salto de línea).</p>
+<p>Basado en esta funcionalidad, esta MV debe cumplir estas funcionalidades:</p>
+<ul>
+<li>Tener la carpeta /datosNfs de MV3 montada en /tmp/carpetaRemota, para poder leer los datos de tipo de cambio de divisa escritos por MV2</li>
+<li>Tener un fichero index.html en una carpeta, que sirva como web a mostrar</li>
+<li>Tener el servidor web en marcha con la funcionalidad “http.server” de Python3</li>
+<li>Tener un script que, cada minuto, recoja el último dato de conversión disponible en el fichero de datos de la carpeta NFS y actualice el fichero index.html</li>
+</ul>
+<p>Si todas las configuraciones son correctas, la web debe mostrarse en el navegador accediendo a http://&lt;IP-pública-de-la-máquina&gt;. El tipo de cambio entre Euro y Libra Esterlina debería actualizarse a medida que se reciban nuevos datos de CurrencyAPI (requiere refrescar la web de forma manual).</p>
+<h2 id="mv4-3417213450">MV4 (34.172.134.50)</h2>
+<pre class="hljs"><code><div><span class="hljs-comment"># Montar la carpeta /datosNfs de MV3 en /tmp/carpetaRemota, para poder leer los datos de tipo de cambio de divisa escritos por MV2.</span>
+sudo mount -t nfs 35.224.232.153:/datosNfs /tmp/carpetaRemota
+</div></code></pre>
+<p>Crear un **<code>index.html</code> **que sirva como web a mostrar:</p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Tipo de Cambio Euro a Libra Esterlina<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Tipo de Cambio Euro a Libra Esterlina:<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>0.8668446549 <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<p>Poner en marcha el servidor web con la funcionalidad <code>http.server</code> de <em>Python3</em>. Y después comprobarlo en :  <em><a href="http://34.172.134.50/">http://34.172.134.50/</a></em></p>
+<pre class="hljs"><code><div>python3 -m http.server 80
+</div></code></pre>
+<p>Crear un script que, cada minuto, recoja el último dato de conversión disponible en el fichero de datos de la carpeta <em>NFS</em> y actualice el fichero <em>index.html</em>.</p>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash
+</span>
+valor=$(cat /tmp/carpetaRemota/HistoricoEurGbp.txt)
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"&lt;!DOCTYPE html&gt;
+            &lt;html&gt;
+            &lt;head&gt;
+                &lt;title&gt;Tipo de Cambio Euro a Libra Esterlina&lt;/title&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+                &lt;h1&gt;Tipo de Cambio Euro a Libra Esterlina:&lt;/h1&gt;
+                &lt;p&gt;<span class="hljs-variable">$valor</span>&lt;/p&gt;
+            &lt;/body&gt;
+            &lt;/html&gt;"</span>&gt;index.html
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment"># m h  dom mon dow   command</span>
+* * * * * /home/nagore/script.sh
+</div></code></pre>
+
+</body>
+</html>

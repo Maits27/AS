@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Lab2.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p><span style="font-size: 40px;">LABORATORIO 2: Sistemas de Ficheros</span></p>
+<p><span style="font-size: 30px;">Gestión básica</span></p>
+<ol>
+<li>En el disco recién creado, crear 4 particiones de 1GB cada una y formatearlas: una de ellas será ext3, otra btrfs, otra xfs y última ext4.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ lsblk -e7
+maitane@as2-maitane:~$ sudo cfdisk /dev/sdb
+
+maitane@as2-maitane:~$ sudo mkfs.ext3 /dev/sdb1
+maitane@as2-maitane:~$ sudo mkfs.btrfs /dev/sdb2
+maitane@as2-maitane:~$ sudo mkfs.xfs /dev/sdb3
+maitane@as2-maitane:~$ sudo mkfs.ext4 /dev/sdb4
+</div></code></pre>
+<ol start="2">
+<li>Configurar un montaje automático de las particiones (al arranque de la máquina virtual) en /disco donde X es 1, 2, 3, 4. Se recomienda seguir estos1 pasos. Verificar que los montajes se mantienen al reiniciar la máquina. En caso de que la MV no arranque o no permita acceso vía SSH por problemas de configuración, se puede iniciar una terminal mínima llamada “consola serie” que provee acceso root para resolver incidencias2.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ https://cloud.google.com/compute/docs/disks/add-persistent-disk?hl=es-419<span class="hljs-comment">#configuring_automatic_mounting_on_vm_restart </span>
+
+maitane@as2-maitane:~$ sudo cp /etc/fstab /etc/fstab.backup
+
+maitane@as2-maitane:~$ sudo blkid /dev/sdb1
+    /dev/sdb1: UUID=<span class="hljs-string">"91cbda65-64be-4ca2-a4c6-68e82a6662ff"</span> SEC_TYPE=<span class="hljs-string">"ext2"</span> TYPE=<span class="hljs-string">"ext3"</span> PARTUUID=<span class="hljs-string">"32fd36ac-7458-f24c-9fd9-069466eb3e18"</span>
+
+maitane@as2-maitane:~$ sudo blkid /dev/sdb2
+    /dev/sdb2: UUID=<span class="hljs-string">"c23a0952-b7d7-4b3a-8fa8-d5f6bb5dae40"</span> UUID_SUB=<span class="hljs-string">"a9905318-19c6-421b-b1c3-88b8286ebfa4"</span> TYPE=<span class="hljs-string">"btrfs"</span> PARTUUID=<span class="hljs-string">"163519dc-bc86-5648-b430-f3b64d2170e1"</span>
+
+maitane@as2-maitane:~$ sudo blkid /dev/sdb3
+    /dev/sdb3: UUID=<span class="hljs-string">"6f69991d-f5d6-466f-870c-581234b75655"</span> TYPE=<span class="hljs-string">"xfs"</span> PARTUUID=<span class="hljs-string">"af0a2d5b-ca6d-a54f-919c-2b2c20c354ab"</span>
+
+maitane@as2-maitane:~$ sudo blkid /dev/sdb4
+    dev/sdb4: UUID=<span class="hljs-string">"9fadf0db-b7d5-49d6-b711-764722cceb58"</span> TYPE=<span class="hljs-string">"ext4"</span> PARTUUID=<span class="hljs-string">"f2d06df1-fadf-f84e-b17e-5662f57ef227"</span>
+
+maitane@as2-maitane:~$ sudo nano /etc/fstab
+maitane@as2-maitane:~$ cat /etc/fstab
+    LABEL=cloudimg-rootfs   /        ext4   defaults        0 1
+    LABEL=UEFI      /boot/efi       vfat    <span class="hljs-built_in">umask</span>=0077      0 1
+    UUID=91cbda65-64be-4ca2-a4c6-68e82a6662ff /mnt/disks/disc1 ext3 discard,defaults,nofail 0 2
+    UUID=c23a0952-b7d7-4b3a-8fa8-d5f6bb5dae40 /mnt/disks/disc2 btrfs discard,defaults,nofail 0 2
+    UUID=6f69991d-f5d6-466f-870c-581234b75655 /mnt/disks/disc3 xfs discard,defaults,nofail 0 2
+    UUID=9fadf0db-b7d5-49d6-b711-764722cceb58 /mnt/disks/disc4 ext4 discard,defaults,nofail 0 2
+
+</div></code></pre>
+<ol start="3">
+<li>¿Cuál de los sistemas de ficheros creados ocupa más espacio?</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ df -h
+    Filesystem      Size  Used Avail Use% Mounted on
+    /dev/sdb2       1.0G  3.4M 1011M   1% /mnt/disks/disc2
+    /dev/sdb4       974M   24K  907M   1% /mnt/disks/disc4
+    /dev/sdb3      1014M   40M  975M   4% /mnt/disks/disc3
+    /dev/sdb1       975M   60K  924M   1% /mnt/disks/disc1
+
+</div></code></pre>
+<ol start="4">
+<li>¿Es posible acceder a una partición ext3 que ha sido montada como ext4? ¿Y al revés? ¿Por qué?</li>
+</ol>
+<p>Sí, es posible acceder a una partición ext3 que ha sido montada como ext4 y viceversa, pero con algunas consideraciones importantes.</p>
+<ul>
+<li>
+<p>Acceder a una partición ext3 como ext4: Si tienes una partición originalmente formateada como ext3 y la montas como ext4, el sistema operativo tratará la partición como ext4, lo que significa que podrás acceder a ella y utilizarla como si fuera una partición ext4. Sin embargo, las características específicas de ext4, como la gestión de metadatos mejorada y el soporte para archivos más grandes, no estarán disponibles en esta partición, ya que sigue siendo una partición ext3 subyacente. Por lo tanto, no obtendrás todas las ventajas de ext4 al montar una partición ext3 como ext4.</p>
+</li>
+<li>
+<p>Acceder a una partición ext4 como ext3: Puedes montar una partición ext4 como ext3, pero esto puede ser más complicado. Si intentas acceder a una partición ext4 como ext3, es posible que experimentes problemas o errores, especialmente si la partición ext4 utiliza características específicas de ext4 que no son compatibles con ext3, como la extensión de múltiples bloques para archivos grandes o la gestión de metadatos mejorada. En el mejor de los casos, podrías tener acceso a los archivos que eran compatibles con ext3, pero cualquier dato o configuración que dependa de las características de ext4 podría no funcionar correctamente.</p>
+</li>
+</ul>
+<p>En resumen, es posible montar una partición ext3 como ext4 y viceversa, pero debes tener en cuenta las limitaciones y posibles problemas de compatibilidad. Si necesitas aprovechar las características específicas de ext4, lo mejor es formatear la partición como ext4 desde el principio en lugar de intentar convertirla o montarla como ext4 después de haber sido originalmente ext3. Además, siempre es aconsejable hacer copias de seguridad de los datos importantes antes de realizar cambios en el sistema de archivos para evitar la pérdida de datos.</p>
+<ol start="5">
+<li>Desmontar y borrar las 3 últimas particiones. Crear una única partición ext4 de 8 GB.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo umount /mnt/disks/disc2
+maitane@as2-maitane:~$ sudo umount /mnt/disks/disc3
+maitane@as2-maitane:~$ sudo umount /mnt/disks/disc4
+maitane@as2-maitane:~$ sudo cfdisk /dev/sdb
+maitane@as2-maitane:~$ sudo mkfs.ext4 /dev/sdb2
+
+</div></code></pre>
+<ol start="6">
+<li>Copiar el contenido del directorio /var en la nueva partición ext4 que acabas de crear. Después, redimensionar la partición para que sea lo más pequeña posible.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ cp -r /var /mnt/disks/disc2
+maitane@as2-maitane:~$ sudo resize2fs -M /dev/sdb2
+maitane@as2-maitane:~$ cfdisk /dev/sdb      → TAMBIEN SE PUEDE HACER EL RESIZE DENTRO
+</div></code></pre>
+<ol start="7">
+<li>Eliminar la configuración de montaje automático realizada en el 2º paso</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo cp /etc/fstab.backup /etc/fstab
+</div></code></pre>
+<p><span style="font-size: 30px;"> Comparativa de rendimiento</span></p>
+<p>Como se ha visto en las diapositivas de este tema, Google Cloud ofrece diferentes tipos de discos que se pueden usar en las máquinas virtuales de Compute Engine. La documentación indica el precio asociado a cada tipo de disco, pero no se detallan valores concretos de rendimiento.</p>
+<p>Para poder conocer las capacidades de los diferentes discos, se pueden utilizar herramientas de benchmark que realizan pruebas de stress para caracterizar el rendimiento. Estas pruebas son útiles para conocer si un disco (o sistema de ficheros) está siendo un cuello de botella para las aplicaciones en uso. En este apartado se proponen diferentes tareas con el benchmark fio:</p>
+<ol>
+<li>Borrar las particiones creadas en el disco en la sección anterior. En este ejercicio nos referiremos a este disco como balanceado.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo umount /mnt/disks/disc2
+maitane@as2-maitane:~$ sudo umount /mnt/disks/disc3
+maitane@as2-maitane:~$ sudo umount /mnt/disks/disc4
+
+</div></code></pre>
+<ol start="2">
+<li>Añadir un nuevo disco de 10 GB de tipo “SSD” a la máquina virtual. En este ejercicio nos referiremos a este disco como SSD.</li>
+<li>En ambos discos, crear 1 partición de 4 GB y formatearla como Ext4. Montar la partición del disco balanceado en el directorio /discoBalanceado y la partición del disco SSD en el directorio /discoSSD. No es necesario configurar los montajes para que se realicen en el arranque del sistema.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo cfdisk /dev/sdb
+maitane@as2-maitane:~$ sudo cfdisk /dev/sdc
+
+maitane@as2-maitane:~$ sudo mkfs.ext4 /dev/sdb1
+maitane@as2-maitane:~$ sudo mkfs.ext4 /dev/sdc1
+
+maitane@as2-maitane:~$ sudo mkdir /discoBalanceado
+maitane@as2-maitane:~$ sudo mkdir /discoSSD
+
+maitane@as2-maitane:~$ sudo mount -t ext4 /dev/sdb1 /discoBalanceado
+maitane@as2-maitane:~$ sudo mount -t ext4 /dev/sdc1 /discoSSD
+
+maitane@as2-maitane:~$ lsblk -e7
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda       8:0    0   20G  0 disk
+├─sda1    8:1    0 19.9G  0 part /
+├─sda14   8:14   0    4M  0 part
+└─sda15   8:15   0  106M  0 part /boot/efi
+sdb       8:16   0   10G  0 disk
+└─sdb1    8:17   0    4G  0 part /discoBalanceado
+sdc       8:32   0   10G  0 disk
+└─sdc1    8:33   0    4G  0 part /discoSSD
+</div></code></pre>
+<ol start="4">
+<li>Revisar la 1ª sección de este artículo3 para aprender a realizar una prueba de rendimiento con fio: https://docs.gitlab.com/ee/administration/operations/filesystem_benchmarking.html</li>
+<li>Instalar fio en el sistema siguiendo el comando que se indica en el artículo.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo apt install fio
+</div></code></pre>
+<ol start="6">
+<li>Utilizar fio para realizar la siguiente prueba:</li>
+</ol>
+<ul>
+<li>Creación de un fichero de contenido aleatorio de 1 GB.</li>
+<li>Mezcla de 75% y 25 % entre operaciones de lectura y escritura.</li>
+<li>Resto de parámetro por defecto (cómo indicados en el ejemplo del artículo).
+Esta prueba se debe realizar con ambos discos. El nombre del fichero que se utilice es indiferente, pero debe estar dentro de cada carpeta /disco correspondiente en cada prueba.
+Los valores más representativos de las pruebas son las métricas de velocidad de lectura (READ) y escritura (WRITE), que se encuentran entre las últimas líneas que genera fio. Estos valores se indican en kB/s o MB/s, ¿qué diferencia hay entre ambos discos?</li>
+</ul>
+<p>Con el disco balanceado:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=<span class="hljs-built_in">test</span> --bs=4k --iodepth=64 --readwrite=randrw --rwmixread=75 --size=1G --filename=/discoBalanceado/testFile
+
+    <span class="hljs-built_in">test</span>: (g=0): rw=randrw, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=64
+    fio-3.16
+    Starting 1 process
+    Jobs: 1 (f=1): [m(1)][100.0%][r=9553KiB/s,w=3175KiB/s][r=2388,w=793 IOPS][eta 00m:00s]
+    <span class="hljs-built_in">test</span>: (groupid=0, <span class="hljs-built_in">jobs</span>=1): err= 0: pid=3399: Wed Sep 27 10:12:37 2023
+    <span class="hljs-built_in">read</span>: IOPS=2226, BW=8907KiB/s (9121kB/s)(768MiB/88246msec)
+    bw (  KiB/s): min=   88, max=42504, per=99.99%, avg=8904.68, stdev=4230.64, samples=176
+    iops        : min=   22, max=10626, avg=2226.16, stdev=1057.66, samples=176
+    write: IOPS=743, BW=2976KiB/s (3047kB/s)(256MiB/88246msec); 0 zone resets
+    bw (  KiB/s): min=  120, max=14640, per=100.00%, avg=2975.03, stdev=1439.87, samples=176
+    iops        : min=   30, max= 3660, avg=743.75, stdev=359.98, samples=176
+    cpu          : usr=2.04%, sys=6.64%, ctx=202216, majf=0, minf=9
+    IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, &gt;=64=100.0%
+        submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+        complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.1%, &gt;=64=0.0%
+        issued rwts: total=196498,65646,0,0 short=0,0,0,0 dropped=0,0,0,0
+        latency   : target=0, window=0, percentile=100.00%, depth=64
+
+    Run status group 0 (all <span class="hljs-built_in">jobs</span>):
+    READ: bw=8907KiB/s (9121kB/s), 8907KiB/s-8907KiB/s (9121kB/s-9121kB/s), io=768MiB (805MB), run=88246-88246msec
+    WRITE: bw=2976KiB/s (3047kB/s), 2976KiB/s-2976KiB/s (3047kB/s-3047kB/s), io=256MiB (269MB), run=88246-88246msec
+
+    Disk stats (<span class="hljs-built_in">read</span>/write):
+    sdb: ios=196256/65593, merge=0/18, ticks=4096220/1495807, in_queue=5592586, util=99.96%
+</div></code></pre>
+<p>Con el disco SSD:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=<span class="hljs-built_in">test</span> --bs=4k --iodepth=64 --readwrite=randrw --rwmixread=75 --size=1G --filename=/discoSSD/testFile2
+
+    <span class="hljs-built_in">test</span>: (g=0): rw=randrw, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=64
+    fio-3.16
+    Starting 1 process
+    <span class="hljs-built_in">test</span>: Laying out IO file (1 file / 1024MiB)
+    Jobs: 1 (f=1): [m(1)][100.0%][r=18.3MiB/s,w=6432KiB/s][r=4697,w=1608 IOPS][eta 00m:00s]
+    <span class="hljs-built_in">test</span>: (groupid=0, <span class="hljs-built_in">jobs</span>=1): err= 0: pid=3420: Wed Sep 27 10:17:13 2023
+    <span class="hljs-built_in">read</span>: IOPS=4929, BW=19.3MiB/s (20.2MB/s)(768MiB/39862msec)
+    bw (  KiB/s): min=18520, max=84984, per=100.00%, avg=19723.92, stdev=7438.69, samples=79
+    iops        : min= 4630, max=21246, avg=4930.96, stdev=1859.67, samples=79
+    write: IOPS=1646, BW=6587KiB/s (6745kB/s)(256MiB/39862msec); 0 zone resets
+    bw (  KiB/s): min= 5888, max=28368, per=100.00%, avg=6590.39, stdev=2487.69, samples=79
+    iops        : min= 1472, max= 7092, avg=1647.57, stdev=621.93, samples=79
+    cpu          : usr=3.59%, sys=11.45%, ctx=159601, majf=0, minf=9
+    IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, &gt;=64=100.0%
+        submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+        complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.1%, &gt;=64=0.0%
+        issued rwts: total=196498,65646,0,0 short=0,0,0,0 dropped=0,0,0,0
+        latency   : target=0, window=0, percentile=100.00%, depth=64
+
+    Run status group 0 (all <span class="hljs-built_in">jobs</span>):
+    READ: bw=19.3MiB/s (20.2MB/s), 19.3MiB/s-19.3MiB/s (20.2MB/s-20.2MB/s), io=768MiB (805MB), run=39862-39862msec
+    WRITE: bw=6587KiB/s (6745kB/s), 6587KiB/s-6587KiB/s (6745kB/s-6745kB/s), io=256MiB (269MB), run=39862-39862msec
+
+    Disk stats (<span class="hljs-built_in">read</span>/write):
+    sdc: ios=195508/65326, merge=0/7, ticks=1890407/636824, in_queue=2527232, util=99.82%
+</div></code></pre>
+<p>Con el disco balanceado salen los siguientes resultados:</p>
+<ul>
+<li>READ: 9121kB/s</li>
+<li>WRITE: 3047kB/s</li>
+</ul>
+<p>Y en cambio, con el SSD sale:</p>
+<ul>
+<li>READ: 20.2MB/s</li>
+<li>WRITE: 6745kB/s</li>
+</ul>
+<ol start="7">
+<li>Repetir la prueba anterior, esta vez utilizando una mezcla de 50% de operaciones de lectura y 50% de operaciones de escritura. ¿Varían los resultados respecto a la 1ª prueba?</li>
+</ol>
+<p>Con el disco balanceado:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=<span class="hljs-built_in">test</span> --bs=4k --iodepth=64 --readwrite=randrw --rwmixread=50 --size=1G --filename=/discoBalanceado/testFile0
+
+    <span class="hljs-built_in">test</span>: (g=0): rw=randrw, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=64
+    fio-3.16
+    Starting 1 process
+    <span class="hljs-built_in">test</span>: Laying out IO file (1 file / 1024MiB)
+    Jobs: 1 (f=1): [m(1)][100.0%][r=6442KiB/s,w=6286KiB/s][r=1610,w=1571 IOPS][eta 00m:00s]
+    <span class="hljs-built_in">test</span>: (groupid=0, <span class="hljs-built_in">jobs</span>=1): err= 0: pid=3440: Wed Sep 27 10:25:16 2023
+    <span class="hljs-built_in">read</span>: IOPS=1623, BW=6495KiB/s (6651kB/s)(512MiB/80697msec)
+    bw (  KiB/s): min= 5968, max=28136, per=100.00%, avg=6495.19, stdev=1723.84, samples=161
+    iops        : min= 1492, max= 7034, avg=1623.76, stdev=430.96, samples=161
+    write: IOPS=1624, BW=6499KiB/s (6655kB/s)(512MiB/80697msec); 0 zone resets
+    bw (  KiB/s): min= 5808, max=29104, per=100.00%, avg=6498.47, stdev=1800.14, samples=161
+    iops        : min= 1452, max= 7276, avg=1624.58, stdev=450.04, samples=161
+    cpu          : usr=2.23%, sys=6.79%, ctx=191318, majf=0, minf=8
+    IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, &gt;=64=100.0%
+        submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+        complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.1%, &gt;=64=0.0%
+        issued rwts: total=131040,131104,0,0 short=0,0,0,0 dropped=0,0,0,0
+        latency   : target=0, window=0, percentile=100.00%, depth=64
+
+    Run status group 0 (all <span class="hljs-built_in">jobs</span>):
+    READ: bw=6495KiB/s (6651kB/s), 6495KiB/s-6495KiB/s (6651kB/s-6651kB/s), io=512MiB (537MB), run=80697-80697msec
+    WRITE: bw=6499KiB/s (6655kB/s), 6499KiB/s-6499KiB/s (6655kB/s-6655kB/s), io=512MiB (537MB), run=80697-80697msec
+
+    Disk stats (<span class="hljs-built_in">read</span>/write):
+    sdb: ios=130904/130980, merge=0/16, ticks=2568244/2571886, in_queue=5140132, util=99.94%
+    
+</div></code></pre>
+<p>Con el disco SSD:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=<span class="hljs-built_in">test</span> --bs=4k --iodepth=64 --readwrite=randrw --rwmixread=50 --size=1G --filename=/discoSSD/testFile0
+
+    <span class="hljs-built_in">test</span>: (g=0): rw=randrw, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=64
+    fio-3.16
+    Starting 1 process
+    <span class="hljs-built_in">test</span>: Laying out IO file (1 file / 1024MiB)
+    Jobs: 1 (f=1): [m(1)][100.0%][r=12.0MiB/s,w=12.6MiB/s][r=3076,w=3231 IOPS][eta 00m:00s]
+    <span class="hljs-built_in">test</span>: (groupid=0, <span class="hljs-built_in">jobs</span>=1): err= 0: pid=3449: Wed Sep 27 10:26:22 2023
+    <span class="hljs-built_in">read</span>: IOPS=3287, BW=12.8MiB/s (13.5MB/s)(512MiB/39862msec)
+    bw (  KiB/s): min=12000, max=56552, per=100.00%, avg=13156.92, stdev=4950.71, samples=79
+    iops        : min= 3000, max=14138, avg=3289.22, stdev=1237.68, samples=79
+    write: IOPS=3288, BW=12.8MiB/s (13.5MB/s)(512MiB/39862msec); 0 zone resets
+    bw (  KiB/s): min=12040, max=56840, per=100.00%, avg=13157.84, stdev=4982.55, samples=79
+    iops        : min= 3010, max=14210, avg=3289.44, stdev=1245.64, samples=79
+    cpu          : usr=3.30%, sys=10.65%, ctx=153652, majf=0, minf=11
+    IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=0.1%, 32=0.1%, &gt;=64=100.0%
+        submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, &gt;=64=0.0%
+        complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.1%, &gt;=64=0.0%
+        issued rwts: total=131040,131104,0,0 short=0,0,0,0 dropped=0,0,0,0
+        latency   : target=0, window=0, percentile=100.00%, depth=64
+
+    Run status group 0 (all <span class="hljs-built_in">jobs</span>):
+    READ: bw=12.8MiB/s (13.5MB/s), 12.8MiB/s-12.8MiB/s (13.5MB/s-13.5MB/s), io=512MiB (537MB), run=39862-39862msec
+    WRITE: bw=12.8MiB/s (13.5MB/s), 12.8MiB/s-12.8MiB/s (13.5MB/s-13.5MB/s), io=512MiB (537MB), run=39862-39862msec
+
+    Disk stats (<span class="hljs-built_in">read</span>/write):
+    sdc: ios=130370/130453, merge=0/7, ticks=1256204/1269958, in_queue=2526163, util=99.83%
+</div></code></pre>
+<p>Con el disco balanceado salen los siguientes resultados:</p>
+<ul>
+<li>READ: 6651kB/s</li>
+<li>WRITE: 6655kB/s</li>
+</ul>
+<p>Y en cambio, con el SSD sale:</p>
+<ul>
+<li>READ: 13.5MB/s</li>
+<li>WRITE: 13.5MB/s</li>
+</ul>
+<p>En este caso en cada disco la velocidad de READ y WRITE son casi idénticas (al 50%).</p>
+<ol start="8">
+<li>Revisar el precio de los discos de tipo balanceado y SSD en Google Cloud. ¿La diferencia de precio es proporcional con la diferencia de rendimiento?</li>
+<li>Desmontar y eliminar el disco de tipo SSD</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ lsblk -e7
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda       8:0    0   20G  0 disk
+├─sda1    8:1    0 19.9G  0 part /
+├─sda14   8:14   0    4M  0 part
+└─sda15   8:15   0  106M  0 part /boot/efi
+sdb       8:16   0   10G  0 disk
+└─sdb1    8:17   0    4G  0 part /discoBalanceado
+sdc       8:32   0   10G  0 disk
+└─sdc1    8:33   0    4G  0 part
+maitane@as2-maitane:~$ sudo cfdisk /dev/sdc
+
+Syncing disks.
+maitane@as2-maitane:~$ lsblk -e7
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda       8:0    0   20G  0 disk
+├─sda1    8:1    0 19.9G  0 part /
+├─sda14   8:14   0    4M  0 part
+└─sda15   8:15   0  106M  0 part /boot/efi
+sdb       8:16   0   10G  0 disk
+└─sdb1    8:17   0    4G  0 part /discoBalanceado
+sdc       8:32   0   10G  0 disk
+</div></code></pre>
+<p><span style="font-size: 30px;">Gestión avanzada</span></p>
+<p>En esta parte del laboratorio se trabaja con LVM y RAID:</p>
+<ol>
+<li>Borrar las particiones creadas en las secciones anteriores en el disco.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ lsblk -e7
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda       8:0    0   20G  0 disk
+├─sda1    8:1    0 19.9G  0 part /
+├─sda14   8:14   0    4M  0 part
+└─sda15   8:15   0  106M  0 part /boot/efi
+sdb       8:16   0   10G  0 disk
+└─sdb1    8:17   0    4G  0 part
+
+maitane@as2-maitane:~$ sudo cfdisk /dev/sdb
+
+Syncing disks.
+maitane@as2-maitane:~$ lsblk -e7
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda       8:0    0   20G  0 disk
+├─sda1    8:1    0 19.9G  0 part /
+├─sda14   8:14   0    4M  0 part
+└─sda15   8:15   0  106M  0 part /boot/efi
+sdb       8:16   0   10G  0 disk
+</div></code></pre>
+<ol start="2">
+<li>Añadir un nuevo disco de 10 GB de tipo balanceado a la máquina virtual.</li>
+</ol>
+<p>Una vez añadido el disco en GoogleCloud:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ lsblk -e7
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda       8:0    0   20G  0 disk
+├─sda1    8:1    0 19.9G  0 part /
+├─sda14   8:14   0    4M  0 part
+└─sda15   8:15   0  106M  0 part /boot/efi
+sdb       8:16   0   10G  0 disk
+sdc       8:32   0   10G  0 disk
+</div></code></pre>
+<ol start="3">
+<li>Crear 2 particiones de 3 GB en cada disco. Crear un volumen lógico LVM con 3 de las 4 particiones. Crear una partición ext4 en el volumen usando el 100% de espacio.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo cfdisk /dev/sdb
+maitane@as2-maitane:~$ sudo cfdisk /dev/sdc
+maitane@as2-maitane:~$ lsblk -e7
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda       8:0    0   20G  0 disk
+├─sda1    8:1    0 19.9G  0 part /
+├─sda14   8:14   0    4M  0 part
+└─sda15   8:15   0  106M  0 part /boot/efi
+sdb       8:16   0   10G  0 disk
+├─sdb1    8:17   0    3G  0 part
+└─sdb2    8:18   0    3G  0 part
+sdc       8:32   0   10G  0 disk
+├─sdc1    8:33   0    3G  0 part
+└─sdc2    8:34   0    3G  0 part
+</div></code></pre>
+<p>Para crear la partición ext4 una vez obtenido lo anterior se hace lo siguiente (los display son para ir viendo cómo se van creando los volúmenes físicos, grupales y lógicos):</p>
+<ul>
+<li>Cuando se utiliza -ff, el comando forzará la creación de un nuevo etiquetado físico (Physical Volume, PV) en los dispositivos especificados, incluso si ya contienen datos o etiquetas LVM existentes.</li>
+</ul>
+<pre class="hljs"><code><div>
+maitane@as2-maitane:~$ sudo pvcreate -ff /dev/sdb1 /dev/sdb2 /dev/sdc1
+  Wiping ext4 signature on /dev/sdb1.
+  Physical volume <span class="hljs-string">"/dev/sdb1"</span> successfully created.
+  Physical volume <span class="hljs-string">"/dev/sdb2"</span> successfully created.
+  Physical volume <span class="hljs-string">"/dev/sdc1"</span> successfully created.
+maitane@as2-maitane:~$ sudo pvdisplay
+  <span class="hljs-string">"/dev/sdb1"</span> is a new physical volume of <span class="hljs-string">"3.00 GiB"</span>
+  --- NEW Physical volume ---
+  PV Name               /dev/sdb1
+  VG Name
+  PV Size               3.00 GiB
+  Allocatable           NO
+  PE Size               0
+  Total PE              0
+  Free PE               0
+  Allocated PE          0
+  PV UUID               IfI88A-WZRp-CVjs-GHQx-7xEi-2cmt-12vTm0
+
+  <span class="hljs-string">"/dev/sdb2"</span> is a new physical volume of <span class="hljs-string">"3.00 GiB"</span>
+  --- NEW Physical volume ---
+  PV Name               /dev/sdb2
+  VG Name
+  PV Size               3.00 GiB
+  Allocatable           NO
+  PE Size               0
+  Total PE              0
+  Free PE               0
+  Allocated PE          0
+  PV UUID               eLRoxa-QLNS-HKND-VApD-rhkA-mJUR-5xcM0A
+
+  <span class="hljs-string">"/dev/sdc1"</span> is a new physical volume of <span class="hljs-string">"3.00 GiB"</span>
+  --- NEW Physical volume ---
+  PV Name               /dev/sdc1
+  VG Name
+  PV Size               3.00 GiB
+  Allocatable           NO
+  PE Size               0
+  Total PE              0
+  Free PE               0
+  Allocated PE          0
+  PV UUID               sCf46t-qvwh-4CUh-naKE-jhhB-xxVT-Onn16O
+
+maitane@as2-maitane:~$ sudo vgcreate grupoVolumenes /dev/sdb1 /dev/sdb2 /dev/sdc1
+  Volume group <span class="hljs-string">"grupoVolumenes"</span> successfully created
+maitane@as2-maitane:~$ sudo vgdisplay
+  --- Volume group ---
+  VG Name               grupoVolumenes
+  System ID
+  Format                lvm2
+  Metadata Areas        3
+  Metadata Sequence No  1
+  VG Access             <span class="hljs-built_in">read</span>/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                0
+  Open LV               0
+  Max PV                0
+  Cur PV                3
+  Act PV                3
+  VG Size               &lt;8.99 GiB
+  PE Size               4.00 MiB
+  Total PE              2301
+  Alloc PE / Size       0 / 0
+  Free  PE / Size       2301 / &lt;8.99 GiB
+  VG UUID               ofN2Oe-0mzG-3FQL-fSu5-jw7i-Ix1X-DpmlJw
+
+maitane@as2-maitane:~$ sudo lvcreate grupoVolumenes -l 100%FREE -n volumenlab2
+  Logical volume <span class="hljs-string">"volumenlab2"</span> created.
+maitane@as2-maitane:~$ sudo lvdisplay
+  --- Logical volume ---
+  LV Path                /dev/grupoVolumenes/volumenlab2
+  LV Name                volumenlab2
+  VG Name                grupoVolumenes
+  LV UUID                21Qh1V-RatQ-k3kZ-q2HC-Wvoe-SuB0-3O52fq
+  LV Write Access        <span class="hljs-built_in">read</span>/write
+  LV Creation host, time as2-maitane, 2023-09-28 10:18:24 +0000
+  LV Status              available
+  <span class="hljs-comment"># open                 0</span>
+  LV Size                &lt;8.99 GiB
+  Current LE             2301
+  Segments               3
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently <span class="hljs-built_in">set</span> to     256
+  Block device           253:0
+
+maitane@as2-maitane:~$  sudo mkfs.ext4 /dev/grupoVolumenes/volumenlab2
+    mke2fs 1.45.5 (07-Jan-2020)
+    Discarding device blocks: <span class="hljs-keyword">done</span>
+    Creating filesystem with 2356224 4k blocks and 589824 inodes
+    Filesystem UUID: b2c02fdd-d900-4d60-bb56-20e06dd0722a
+    Superblock backups stored on blocks:
+            32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632
+
+    Allocating group tables: <span class="hljs-keyword">done</span>
+    Writing inode tables: <span class="hljs-keyword">done</span>
+    Creating journal (16384 blocks): <span class="hljs-keyword">done</span>
+    Writing superblocks and filesystem accounting information: <span class="hljs-keyword">done</span>
+
+maitane@as2-maitane:~$ lsblk -e7
+    NAME                           MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+    sda                              8:0    0   20G  0 disk
+    ├─sda1                           8:1    0 19.9G  0 part /
+    ├─sda14                          8:14   0    4M  0 part
+    └─sda15                          8:15   0  106M  0 part /boot/efi
+    sdb                              8:16   0   10G  0 disk
+    ├─sdb1                           8:17   0    3G  0 part
+    │ └─grupoVolumenes-volumenlab2 253:0    0    9G  0 lvm
+    └─sdb2                           8:18   0    3G  0 part
+    └─grupoVolumenes-volumenlab2 253:0    0    9G  0 lvm
+    sdc                              8:32   0   10G  0 disk
+    ├─sdc1                           8:33   0    3G  0 part
+    │ └─grupoVolumenes-volumenlab2 253:0    0    9G  0 lvm
+    └─sdc2                           8:34   0    3G  0 part
+</div></code></pre>
+<ol start="4">
+<li>Montar el sistema de ficheros en un directorio y comprobar su estado. Para ello, copiar alguno de los directorios del sistema operativo a él.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo mount -t ext4 /dev/grupoVolumenes/volumenlab2 /labo2_lvm
+maitane@as2-maitane:~$ lsblk -e7
+    NAME                           MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+    sda                              8:0    0   20G  0 disk
+    ├─sda1                           8:1    0 19.9G  0 part /
+    ├─sda14                          8:14   0    4M  0 part
+    └─sda15                          8:15   0  106M  0 part /boot/efi
+    sdb                              8:16   0   10G  0 disk
+    ├─sdb1                           8:17   0    3G  0 part
+    │ └─grupoVolumenes-volumenlab2 253:0    0    9G  0 lvm  /labo2_lvm
+    └─sdb2                           8:18   0    3G  0 part
+    └─grupoVolumenes-volumenlab2 253:0    0    9G  0 lvm  /labo2_lvm
+    sdc                              8:32   0   10G  0 disk
+    ├─sdc1                           8:33   0    3G  0 part
+    │ └─grupoVolumenes-volumenlab2 253:0    0    9G  0 lvm  /labo2_lvm
+    └─sdc2                           8:34   0    3G  0 part
+</div></code></pre>
+<p>Copiamos el contenido de la carpeta /tmp por ejemplo:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ ls /tmp/
+    snap-private-tmp
+    systemd-private-ef1320c1169c4a51bc43c6fa38e563c7-chrony.service-OLe08h
+    systemd-private-ef1320c1169c4a51bc43c6fa38e563c7-systemd-logind.service-ut6VEg
+    systemd-private-ef1320c1169c4a51bc43c6fa38e563c7-systemd-resolved.service-tyf77g
+
+maitane@as2-maitane:~$ sudo cp -r /tmp/* /labo2_lvm
+maitane@as2-maitane:~$ ls /labo2_lvm/
+    lost+found
+    snap-private-tmp
+    systemd-private-ef1320c1169c4a51bc43c6fa38e563c7-chrony.service-OLe08h
+    systemd-private-ef1320c1169c4a51bc43c6fa38e563c7-systemd-logind.service-ut6VEg
+    systemd-private-ef1320c1169c4a51bc43c6fa38e563c7-systemd-resolved.service-tyf77g
+</div></code></pre>
+<ol start="5">
+<li>Añadir la 4ª partición al volumen lógico y extender el tamaño del sistema de ficheros para que ocupe el total del volumen. Comprobar que los datos copiados en el paso anterior siguen estando.</li>
+</ol>
+<ul>
+<li>-l +100%FREE indica que estás utilizando todo el espacio libre disponible en el grupo de volúmenes para la extensión del LV.</li>
+</ul>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$  sudo pvcreate -ff /dev/sdc2
+  Physical volume <span class="hljs-string">"/dev/sdc2"</span> successfully created.
+maitane@as2-maitane:~$ sudo vgextend grupoVolumenes /dev/sdc2
+  Volume group <span class="hljs-string">"grupoVolumenes"</span> successfully extended
+maitane@as2-maitane:~$ sudo lvextend -l +100%FREE /dev/grupoVolumenes/volumenlab2
+  Size of logical volume grupoVolumenes/volumenlab2 changed from &lt;8.99 GiB (2301 extents) to 11.98 GiB (3068 extents).
+  Logical volume grupoVolumenes/volumenlab2 successfully resized.
+maitane@as2-maitane:~$ lsblk -e7
+    NAME                           MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+    sda                              8:0    0   20G  0 disk
+    ├─sda1                           8:1    0 19.9G  0 part /
+    ├─sda14                          8:14   0    4M  0 part
+    └─sda15                          8:15   0  106M  0 part /boot/efi
+    sdb                              8:16   0   10G  0 disk
+    ├─sdb1                           8:17   0    3G  0 part
+    │ └─grupoVolumenes-volumenlab2 253:0    0   12G  0 lvm  /labo2_lvm
+    └─sdb2                           8:18   0    3G  0 part
+    └─grupoVolumenes-volumenlab2 253:0    0   12G  0 lvm  /labo2_lvm
+    sdc                              8:32   0   10G  0 disk
+    ├─sdc1                           8:33   0    3G  0 part
+    │ └─grupoVolumenes-volumenlab2 253:0    0   12G  0 lvm  /labo2_lvm
+    └─sdc2                           8:34   0    3G  0 part
+    └─grupoVolumenes-volumenlab2 253:0    0   12G  0 lvm  /labo2_lvm
+
+maitane@as2-maitane:~$ df -h
+Filesystem                              Size  Used Avail Use% Mounted on
+/dev/root                                20G  5.6G   14G  29% /
+devtmpfs                                977M     0  977M   0% /dev
+tmpfs                                   981M     0  981M   0% /dev/shm
+tmpfs                                   197M  984K  196M   1% /run
+tmpfs                                   5.0M     0  5.0M   0% /run/lock
+tmpfs                                   981M     0  981M   0% /sys/fs/cgroup
+/dev/loop0                              128K  128K     0 100% /snap/bare/5
+/dev/loop1                               64M   64M     0 100% /snap/core20/2015
+/dev/loop2                               74M   74M     0 100% /snap/core22/864
+/dev/loop3                              7.8M  7.8M     0 100% /snap/gedit/678
+/dev/loop4                              7.5M  7.5M     0 100% /snap/gedit/682
+/dev/loop5                              486M  486M     0 100% /snap/gnome-42-2204/126
+/dev/loop6                              497M  497M     0 100% /snap/gnome-42-2204/132
+/dev/loop7                              341M  341M     0 100% /snap/google-cloud-cli/167
+/dev/loop8                               92M   92M     0 100% /snap/gtk-common-themes/1535
+/dev/loop9                               92M   92M     0 100% /snap/lxd/24061
+/dev/loop10                              41M   41M     0 100% /snap/snapd/20092
+/dev/sda15                              105M  6.1M   99M   6% /boot/efi
+tmpfs                                   197M     0  197M   0% /run/user/1001
+/dev/mapper/grupoVolumenes-volumenlab2  8.8G   60K  8.3G   1% /labo2_lvm
+maitane@as2-maitane:~$ ls /labo2_lvm/
+lost+found
+snap-private-tmp
+systemd-private-ef1320c1169c4a51bc43c6fa38e563c7-chrony.service-OLe08h
+systemd-private-ef1320c1169c4a51bc43c6fa38e563c7-systemd-logind.service-ut6VEg
+systemd-private-ef1320c1169c4a51bc43c6fa38e563c7-systemd-resolved.service-tyf77g
+</div></code></pre>
+<p>El directorio de nuestro volumen lógico entonces es el siguiente: <strong>/dev/mapper/grupoVolumenes-volumenlab2</strong>  8.8G   60K  8.3G   1% /labo2_lvm</p>
+<p>Sabiendo esto (el <em>-p</em> sirve para ver el <em>proceso</em>):</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo resize2fs -p /dev/mapper/grupoVolumenes-volumenlab2
+resize2fs 1.45.5 (07-Jan-2020)
+Filesystem at /dev/mapper/grupoVolumenes-volumenlab2 is mounted on /labo2_lvm; on-line resizing required
+old_desc_blocks = 2, new_desc_blocks = 2
+The filesystem on /dev/mapper/grupoVolumenes-volumenlab2 is now 3141632 (4k) blocks long.
+
+maitane@as2-maitane:~$ df -h
+Filesystem                              Size  Used Avail Use% Mounted on
+/dev/root                                20G  5.6G   14G  29% /
+devtmpfs                                977M     0  977M   0% /dev
+tmpfs                                   981M     0  981M   0% /dev/shm
+tmpfs                                   197M  984K  196M   1% /run
+tmpfs                                   5.0M     0  5.0M   0% /run/lock
+tmpfs                                   981M     0  981M   0% /sys/fs/cgroup
+/dev/loop0                              128K  128K     0 100% /snap/bare/5
+/dev/loop1                               64M   64M     0 100% /snap/core20/2015
+/dev/loop2                               74M   74M     0 100% /snap/core22/864
+/dev/loop3                              7.8M  7.8M     0 100% /snap/gedit/678
+/dev/loop4                              7.5M  7.5M     0 100% /snap/gedit/682
+/dev/loop5                              486M  486M     0 100% /snap/gnome-42-2204/126
+/dev/loop6                              497M  497M     0 100% /snap/gnome-42-2204/132
+/dev/loop7                              341M  341M     0 100% /snap/google-cloud-cli/167
+/dev/loop8                               92M   92M     0 100% /snap/gtk-common-themes/1535
+/dev/loop9                               92M   92M     0 100% /snap/lxd/24061
+/dev/loop10                              41M   41M     0 100% /snap/snapd/20092
+/dev/sda15                              105M  6.1M   99M   6% /boot/efi
+tmpfs                                   197M     0  197M   0% /run/user/1001
+/dev/mapper/grupoVolumenes-volumenlab2   12G   60K   12G   1% /labo2_lvm
+
+maitane@as2-maitane:~$ ls /labo2_lvm/
+    lost+found
+    snap-private-tmp
+    systemd-private-ef1320c1169c4a51bc43c6fa38e563c7-chrony.service-OLe08h
+    systemd-private-ef1320c1169c4a51bc43c6fa38e563c7-systemd-logind.service-ut6VEg
+    systemd-private-ef1320c1169c4a51bc43c6fa38e563c7-systemd-resolved.service-tyf77g
+</div></code></pre>
+<p>Vemos cómo el tamaño ha aumentado a 12G y todo sigue ahí.</p>
+<ol start="6">
+<li>Borrar el volumen lógico recién creado (utilizar los comandos LVM apropiados).</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo umount /labo2_lvm
+maitane@as2-maitane:~$ lsblk -e7
+NAME                           MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda                              8:0    0   20G  0 disk
+├─sda1                           8:1    0 19.9G  0 part /
+├─sda14                          8:14   0    4M  0 part
+└─sda15                          8:15   0  106M  0 part /boot/efi
+sdb                              8:16   0   10G  0 disk
+├─sdb1                           8:17   0    3G  0 part
+│ └─grupoVolumenes-volumenlab2 253:0    0   12G  0 lvm
+└─sdb2                           8:18   0    3G  0 part
+  └─grupoVolumenes-volumenlab2 253:0    0   12G  0 lvm
+sdc                              8:32   0   10G  0 disk
+├─sdc1                           8:33   0    3G  0 part
+│ └─grupoVolumenes-volumenlab2 253:0    0   12G  0 lvm
+└─sdc2                           8:34   0    3G  0 part
+  └─grupoVolumenes-volumenlab2 253:0    0   12G  0 lvm
+maitane@as2-maitane:~$ sudo lvremove /dev/grupoVolumenes/volumenlab2
+Do you really want to remove and DISCARD active logical volume grupoVolumenes/volumenlab2? [y/n]: y
+  Logical volume <span class="hljs-string">"volumenlab2"</span> successfully removed
+maitane@as2-maitane:~$ lsblk -e7
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda       8:0    0   20G  0 disk
+├─sda1    8:1    0 19.9G  0 part /
+├─sda14   8:14   0    4M  0 part
+└─sda15   8:15   0  106M  0 part /boot/efi
+sdb       8:16   0   10G  0 disk
+├─sdb1    8:17   0    3G  0 part
+└─sdb2    8:18   0    3G  0 part
+sdc       8:32   0   10G  0 disk
+├─sdc1    8:33   0    3G  0 part
+└─sdc2    8:34   0    3G  0 part
+</div></code></pre>
+<ol start="7">
+<li>Crear un sistema RAID 5 con 3 de las particiones. Crear un sistema de ficheros ext4 para el sistema RAID 5 y hacerlo accesible. Copiar el  contenido de la carpeta /var a la carpeta del sistema RAID.</li>
+</ol>
+<pre class="hljs"><code><div>sudo mdadm --create /dev/md0 -v --level=5 --raid-devices=3 /dev/sdb1 /dev/sdb2 /dev/sdc1
+    mdadm: layout defaults to left-symmetric
+    mdadm: layout defaults to left-symmetric
+    mdadm: chunk size defaults to 512K
+    mdadm: size <span class="hljs-built_in">set</span> to 3142656K
+    mdadm: Defaulting to version 1.2 metadata
+    mdadm: array /dev/md0 started.
+
+maitane@as2-maitane:~$ sudo mkfs.ext4 /dev/md0
+mke2fs 1.45.5 (07-Jan-2020)
+Creating filesystem with 1571328 4k blocks and 393216 inodes
+Filesystem UUID: acfd2e20-9401-41f2-8f0c-f7c2eb2ff5c8
+Superblock backups stored on blocks:
+        32768, 98304, 163840, 229376, 294912, 819200, 884736
+
+Allocating group tables: <span class="hljs-keyword">done</span>
+Writing inode tables: <span class="hljs-keyword">done</span>
+Creating journal (16384 blocks): <span class="hljs-keyword">done</span>
+Writing superblocks and filesystem accounting information: <span class="hljs-keyword">done</span>
+
+maitane@as2-maitane:~$ sudo mkdir /lab2_raid5
+maitane@as2-maitane:~$ sudo mount -t ext4 /dev/md0 /lab2_raid5
+
+maitane@as2-maitane:~$ sudo cp -r /var/* /lab2_raid5
+maitane@as2-maitane:~$ ls /lab2_raid5/
+backups  cache  crash  lib  <span class="hljs-built_in">local</span>  lock  <span class="hljs-built_in">log</span>  mail  opt  run  snap  spool  tmp
+</div></code></pre>
+<ol start="8">
+<li>Simular un fallo en el tercer disco (parámetro -f). Recuperar la información perdida usando la partición que quedó libre.</li>
+</ol>
+<p>Vemos como estaba todo antes y generamos el fallo:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo mdadm --detail /dev/md0
+/dev/md0:
+           Version : 1.2
+     Creation Time : Thu Sep 28 10:51:27 2023
+        Raid Level : raid5
+        Array Size : 6285312 (5.99 GiB 6.44 GB)
+     Used Dev Size : 3142656 (3.00 GiB 3.22 GB)
+      Raid Devices : 3
+     Total Devices : 3
+       Persistence : Superblock is persistent
+
+       Update Time : Thu Sep 28 10:57:58 2023
+             State : clean
+    Active Devices : 3
+   Working Devices : 3
+    Failed Devices : 0
+     Spare Devices : 0
+
+            Layout : left-symmetric
+        Chunk Size : 512K
+
+Consistency Policy : resync
+
+              Name : as2-maitane:0  (<span class="hljs-built_in">local</span> to host as2-maitane)
+              UUID : 9d31f695:c7b4b9d2:7d280d3d:888b3c89
+            Events : 18
+
+    Number   Major   Minor   RaidDevice State
+       0       8       17        0      active sync   /dev/sdb1
+       1       8       18        1      active sync   /dev/sdb2
+       3       8       33        2      active sync   /dev/sdc1
+maitane@as2-maitane:~$ sudo mdadm /dev/md0 -f /dev/sdc1
+mdadm: <span class="hljs-built_in">set</span> /dev/sdc1 faulty <span class="hljs-keyword">in</span> /dev/md0
+</div></code></pre>
+<p>Vemos cómo el estado ha cambiado para informar del fallo (hay varias formas de hacerlo):</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo mdadm --detail /dev/md0
+/dev/md0:
+           Version : 1.2
+     Creation Time : Thu Sep 28 10:51:27 2023
+        Raid Level : raid5
+        Array Size : 6285312 (5.99 GiB 6.44 GB)
+     Used Dev Size : 3142656 (3.00 GiB 3.22 GB)
+      Raid Devices : 3
+     Total Devices : 3
+       Persistence : Superblock is persistent
+
+       Update Time : Thu Sep 28 10:58:37 2023
+             State : clean, degraded
+    Active Devices : 2
+   Working Devices : 2
+    Failed Devices : 1
+     Spare Devices : 0
+
+            Layout : left-symmetric
+        Chunk Size : 512K
+
+Consistency Policy : resync
+
+              Name : as2-maitane:0  (<span class="hljs-built_in">local</span> to host as2-maitane)
+              UUID : 9d31f695:c7b4b9d2:7d280d3d:888b3c89
+            Events : 20
+
+    Number   Major   Minor   RaidDevice State
+       0       8       17        0      active sync   /dev/sdb1
+       1       8       18        1      active sync   /dev/sdb2
+       -       0        0        2      removed
+
+       3       8       33        -      faulty   /dev/sdc1
+
+maitane@as2-maitane:~$ cat /proc/mdstat
+Personalities : [raid6] [raid5] [raid4]
+md0 : active raid5 sdc1[3](F) sdb2[1] sdb1[0]
+      6285312 blocks super 1.2 level 5, 512k chunk, algorithm 2 [3/2] [UU_]
+
+unused devices: &lt;none&gt;
+</div></code></pre>
+<p>Ahora solucionamos el error y vemos cómo el proceso recupera los ficheros perdidos:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo mdadm /dev/md0 --remove /dev/sdc1
+mdadm: hot removed /dev/sdc1 from /dev/md0
+maitane@as2-maitane:~$ sudo mdadm --add /dev/md0 /dev/sdc1
+mdadm: added /dev/sdc1
+maitane@as2-maitane:~$ cat /proc/mdstat
+Personalities : [raid6] [raid5] [raid4]
+md0 : active raid5 sdc1[3] sdb2[1] sdb1[0]
+      6285312 blocks super 1.2 level 5, 512k chunk, algorithm 2 [3/2] [UU_]
+      [======&gt;..............]  recovery = 31.5% (991060/3142656) finish=0.4min speed=82588K/sec
+
+unused devices: &lt;none&gt;
+maitane@as2-maitane:~$ cat /proc/mdstat
+Personalities : [raid6] [raid5] [raid4]
+md0 : active raid5 sdc1[3] sdb2[1] sdb1[0]
+      6285312 blocks super 1.2 level 5, 512k chunk, algorithm 2 [3/2] [UU_]
+      [=========&gt;...........]  recovery = 47.2% (1484988/3142656) finish=0.3min speed=78157K/sec
+
+
+maitane@as2-maitane:~$ sudo mdadm --detail /dev/md0
+/dev/md0:
+           Version : 1.2
+     Creation Time : Thu Sep 28 10:51:27 2023
+        Raid Level : raid5
+        Array Size : 6285312 (5.99 GiB 6.44 GB)
+     Used Dev Size : 3142656 (3.00 GiB 3.22 GB)
+      Raid Devices : 3
+     Total Devices : 3
+       Persistence : Superblock is persistent
+
+       Update Time : Thu Sep 28 11:00:16 2023
+             State : clean, degraded, recovering
+    Active Devices : 2
+   Working Devices : 3
+    Failed Devices : 0
+     Spare Devices : 1
+
+            Layout : left-symmetric
+        Chunk Size : 512K
+
+Consistency Policy : resync
+
+    Rebuild Status : 72% complete
+
+              Name : as2-maitane:0  (<span class="hljs-built_in">local</span> to host as2-maitane)
+              UUID : 9d31f695:c7b4b9d2:7d280d3d:888b3c89
+            Events : 34
+
+    Number   Major   Minor   RaidDevice State
+       0       8       17        0      active sync   /dev/sdb1
+       1       8       18        1      active sync   /dev/sdb2
+       3       8       33        2      spare rebuilding   /dev/sdc1+
+
+
+maitane@as2-maitane:~$ sudo ls /lab2_raid5/
+backups  cache  crash  lib  <span class="hljs-built_in">local</span>  lock  <span class="hljs-built_in">log</span>  mail  opt  run  snap  spool  tmp
+</div></code></pre>
+<ol start="9">
+<li>Desmontar y eliminar el dispositivo RAID. Eliminar el disco creado en el paso 2.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo mdadm --stop /dev/md0
+mdadm: Cannot get exclusive access to /dev/md0:Perhaps a running process, mounted filesystem or active volume group?
+maitane@as2-maitane:~$ sudo umount /lab2_raid5
+umount: /lab2_raid5: target is busy.
+</div></code></pre>
+<p>Da este error, por lo tanto hacemos lo siguiente:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo lsof | grep /lab2_raid5
+cp        2080                          root    4w      REG                9,0  36306944     265527 /lab2_raid5/var/lib/snapd/snaps/core22_864.snap (deleted)
+cp        2083                          root    4w      REG                9,0   2359296     262195 /lab2_raid5/var/lib/apt/lists/security.ubuntu.com_ubuntu_dists_focal-security_main_binary-amd64_Packages (deleted)
+cp        2085                          root    4w      REG                9,0 134217728     134734 /lab2_raid5/lib/snapd/seed/snaps/google-cloud-cli_167.snap (deleted)
+maitane@as2-maitane:~$ sudo <span class="hljs-built_in">kill</span> -9 2080 2083 2085
+maitane@as2-maitane:~$ sudo lsof | grep /lab2_raid5
+</div></code></pre>
+<p>Y esta vez tratamos de desmontar:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo umount /lab2_raid5
+maitane@as2-maitane:~$ sudo mdadm --stop /dev/md0
+mdadm: stopped /dev/md0
+maitane@as2-maitane:~$ sudo mdadm --remove /dev/md0
+mdadm: error opening /dev/md0: No such file or directory
+maitane@as2-maitane:~$ lsblk -e7
+NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
+sda       8:0    0   20G  0 disk
+├─sda1    8:1    0 19.9G  0 part /
+├─sda14   8:14   0    4M  0 part
+└─sda15   8:15   0  106M  0 part /boot/efi
+sdb       8:16   0   10G  0 disk
+├─sdb1    8:17   0    3G  0 part
+└─sdb2    8:18   0    3G  0 part
+sdc       8:32   0   10G  0 disk
+├─sdc1    8:33   0    3G  0 part
+└─sdc2    8:34   0    3G  0 part
+maitane@as2-maitane:~$ sudo rm -rf /lab2_raid5
+</div></code></pre>
+<p><span style="font-size: 30px;">Copias de seguridad</span></p>
+<p>En esta última parte del laboratorio se trabaja con la herramienta rsnapshot:</p>
+<ol>
+<li>Borrar las particiones creadas en la sección anterior en el disco.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo cfdisk /dev/sdb
+maitane@as2-maitane:~$ sudo cfdisk /dev/sdc
+</div></code></pre>
+<ol start="2">
+<li>Crear 1 partición de 4 GB en el disco y formatearla como ext4. Montarla en un directorio llamado /backups.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo cfdisk /dev/sdc
+maitane@as2-maitane:~$ sudo mkfs.ext4 /dev/sdc1
+maitane@as2-maitane:~$ sudo mkdir /backups
+maitane@as2-maitane:~$ sudo mount -t ext4 /dev/sdc1 /backups
+</div></code></pre>
+<ol start="3">
+<li>Instalar rsnapshot en el sistema y revisar este documento donde se detalla su configuración: https://wiki.archlinux.org/title/Rsnapshot</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo apt install rsnapshot
+
+</div></code></pre>
+<ol start="4">
+<li>Configurar rsnapshot de la siguiente forma:
+<ul>
+<li>Directorio para almacenar las copias de seguridad: /backups.</li>
+<li>Niveles de copia e intervalos:
+i. “horaria”, 24
+ii. “diaria”, 7
+iii. “semanal”, 4</li>
+<li>Directorios a guardar (todos se almacenan en el directorio /backups): /home, /etc y /var/log</li>
+</ul>
+</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo cp /etc/rsnapshot.conf /etc/rsnapshot.conf.default
+maitane@as2-maitane:~$ sudo nano /etc/rsnapshot.conf
+</div></code></pre>
+<p>Dentro de este, descomentamos las líneas:</p>
+<pre class="hljs"><code><div>cmd_du          /usr/bin/du
+cmd_rsnapshot_diff      /usr/bin/rsnapshot-diff
+cmd_ssh /usr/bin/ssh
+</div></code></pre>
+<p>Y escribimos las siguientes líneas en el apartado que corresponde:</p>
+<pre class="hljs"><code><div><span class="hljs-comment">#########################################</span>
+<span class="hljs-comment">#     BACKUP LEVELS / INTERVALS         #</span>
+<span class="hljs-comment"># Must be unique and in ascending order #</span>
+<span class="hljs-comment"># e.g. alpha, beta, gamma, etc.         #</span>
+<span class="hljs-comment">#########################################</span>
+retain  hourly  24
+retain  daily   7
+retain  weekly  4
+
+                    ...
+
+<span class="hljs-comment">###############################</span>
+<span class="hljs-comment">### BACKUP POINTS / SCRIPTS ###</span>
+<span class="hljs-comment">###############################</span>
+
+<span class="hljs-comment"># LOCALHOST</span>
+backup  /home/          localhost/
+backup  /etc/           localhost/
+backup /var/<span class="hljs-built_in">log</span>         localhost/
+</div></code></pre>
+<ol start="5">
+<li>Verificar que la configuración es correcta con el comando rsnapshot  configtest.</li>
+</ol>
+<p>Al escribir esto hay varios errores:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ rsnapshot configtest
+----------------------------------------------------------------------------
+rsnapshot encountered an error! The program was invoked with these options:
+/usr/bin/rsnapshot configtest
+----------------------------------------------------------------------------
+ERROR: /etc/rsnapshot.conf on line 23:
+ERROR: snapshot_root /backups/ - snapshot_root exists but is not writable
+ERROR: /etc/rsnapshot.conf on line 91:
+ERROR: retain hourly 24 - missing tabs to separate words - change spaces to \
+         tabs.
+ERROR: /etc/rsnapshot.conf on line 92:
+ERROR: retain daily 7 - missing tabs to separate words - change spaces to \
+         tabs.
+ERROR: /etc/rsnapshot.conf on line 93:
+ERROR: retain weekly 4 - missing tabs to separate words - change spaces to \
+         tabs.
+ERROR: /etc/rsnapshot.conf on line 229:
+ERROR: backup /home/ localhost/ - snapshot_root needs to be defined before \
+         backup points
+ERROR: /etc/rsnapshot.conf on line 230:
+ERROR: backup /etc/ localhost/ - snapshot_root needs to be defined before \
+         backup points
+ERROR: /etc/rsnapshot.conf on line 231:
+ERROR: backup /var/<span class="hljs-built_in">log</span> localhost/ - missing tabs to separate words - change \
+         spaces to tabs.
+ERROR: ---------------------------------------------------------------------
+ERROR: Errors were found <span class="hljs-keyword">in</span> /etc/rsnapshot.conf,
+ERROR: rsnapshot can not <span class="hljs-built_in">continue</span>. If you think an entry looks right, make
+ERROR: sure you don<span class="hljs-string">'t have spaces where only tabs should be.
+</span></div></code></pre>
+<p>Muchos de ellos se refieren a los espaciados, por lo que en las líneas añadidas habrá que añadir tabulaciones en vez de espacios. Además, el primer error <em>ERROR: snapshot_root /backups/ - snapshot_root exists but is not writable</em> se soluciona dándole permisos para escribir en nuestra carpeta de la siguiente forma (y debería funcionar):</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo chmod o+w /backups
+maitane@as2-maitane:~$ rsnapshot configtest
+Syntax OK
+</div></code></pre>
+<ol start="6">
+<li>Realizar una copia de tipo “horaria” y revisar que los contenidos se han copiado correctamente (esto tardará un rato).</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo rsnapshot hourly
+maitane@as2-maitane:~$ ls /backups/
+    hourly.0  lost+found
+</div></code></pre>
+<ol start="7">
+<li>Crear una carpeta y un fichero nuevo en el directorio /home de tu usuario (incluye algo de texto en el fichero). Después, realizar una nueva copia de tipo “horaria”.</li>
+</ol>
+<pre class="hljs"><code><div>
+maitane@as2-maitane:~$ mkdir rsnapshotLab
+maitane@as2-maitane:~$ <span class="hljs-built_in">echo</span> <span class="hljs-string">"Hola mundillo"</span> &gt; ./rsnapshotLab/prueba.txt
+
+maitane@as2-maitane:~$ sudo rsnapshot hourly
+
+</div></code></pre>
+<ol start="8">
+<li>Verificar que la nueva copia se ha hecho correctamente y revisar los cambios entre ambas copias con el comando rsnapshot-diff.</li>
+</ol>
+<pre class="hljs"><code><div>
+maitane@as2-maitane:~$ ls /backups/
+hourly.0  hourly.1  lost+found
+maitane@as2-maitane:~$ rsnapshot-diff -v /backups/hourly.0 /backups/hourly.1
+Comparing /backups/hourly.1 to /backups/hourly.0
++ /backups/hourly.0/localhost/var/<span class="hljs-built_in">log</span>/btmp
++ /backups/hourly.0/localhost/var/<span class="hljs-built_in">log</span>/auth.log
++ /backups/hourly.0/localhost/var/<span class="hljs-built_in">log</span>/syslog
+- /backups/hourly.1/localhost/var/<span class="hljs-built_in">log</span>/btmp
+- /backups/hourly.1/localhost/var/<span class="hljs-built_in">log</span>/auth.log
+- /backups/hourly.1/localhost/var/<span class="hljs-built_in">log</span>/syslog
++ /backups/hourly.0/localhost/var/<span class="hljs-built_in">log</span>/journal/b7d6c750ffdf4ace5831b6b8c482d5ae/system.journal
+- /backups/hourly.1/localhost/var/<span class="hljs-built_in">log</span>/journal/b7d6c750ffdf4ace5831b6b8c482d5ae/system.journal
+Can<span class="hljs-string">'t open dir /backups/hourly.1/localhost/var/log/private
+maitane@as2-maitane:~$ sudo rsnapshot-diff -v /backups/hourly.0 /backups/hourly.1
+Comparing /backups/hourly.1 to /backups/hourly.0
++ /backups/hourly.0/localhost/var/log/syslog
++ /backups/hourly.0/localhost/var/log/btmp
++ /backups/hourly.0/localhost/var/log/auth.log
+- /backups/hourly.1/localhost/var/log/syslog
+- /backups/hourly.1/localhost/var/log/btmp
+- /backups/hourly.1/localhost/var/log/auth.log
++ /backups/hourly.0/localhost/var/log/journal/b7d6c750ffdf4ace5831b6b8c482d5ae/system.journal
+- /backups/hourly.1/localhost/var/log/journal/b7d6c750ffdf4ace5831b6b8c482d5ae/system.journal
++ /backups/hourly.0/localhost/home/maitane/rsnapshotLab/prueba.txt
+Between /backups/hourly.1 and /backups/hourly.0:
+  5 were added, taking 25737054 bytes
+  4 were removed, saving 25734540 bytes
+
+</span></div></code></pre>
+
+</body>
+</html>

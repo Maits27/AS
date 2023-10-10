@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>L3_1.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p><span style="font-size: 40px;">LABORATORIO 3: MONITORIZACIÓN</span></p>
+<p><span style="font-size: 30px;">Gestión de recursos del sistema</span></p>
+<p>Esta parte del laboratorio propone unas tareas para trabajar con los comandos relacionados con la monitorización y gestión de los recursos del sistema.</p>
+<ol>
+<li>Obtener el número de procesos en ejecución en el sistema.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ ps al
+F   UID     PID    PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND
+4     0     655       1  20   0   7360  2404 -      Ss+  ttyS0      0:00 /sbin/agetty -o -p -- \u --keep
+4     0     719       1  20   0   5836  1928 -      Ss+  tty1       0:00 /sbin/agetty -o -p -- \u --nocl
+0  1001    1001    1000  20   0  10040  5112 do_wai Ss   pts/0      0:00 -bash
+0  1001    1037    1001  20   0  10540  3048 -      R+   pts/0      0:00 ps al
+
+</div></code></pre>
+<p>O también:</p>
+<ul>
+<li><em>ps aux</em>: muestra una lista de todos los procesos en ejecución en el sistema, junto con información detallada sobre cada uno.</li>
+</ul>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ ps aux | wc -l
+102
+</div></code></pre>
+<ol start="2">
+<li>Obtener el número de procesos en ejecución que pertenezcan a usuario root.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ ps aux | grep root | wc -l
+89
+</div></code></pre>
+<ol start="3">
+<li>Instalar el paquete “stress-ng”. Ejecutar el benchmark para 1 núcleo de CPU y 20 segundos.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo apt install stress-ng
+maitane@as2-maitane:~$ stress-ng -c 1 -v --timeout 20s
+stress-ng: debug: [1122] 2 processors online, 2 processors configured
+stress-ng: info:  [1122] dispatching hogs: 1 cpu
+stress-ng: debug: [1122] cache allocate: default cache size: 56320K
+stress-ng: debug: [1122] starting stressors
+stress-ng: debug: [1122] 1 stressor spawned
+stress-ng: debug: [1123] stress-ng-cpu: started [1123] (instance 0)
+stress-ng: debug: [1123] stress-ng-cpu using method <span class="hljs-string">'all'</span>
+stress-ng: debug: [1123] stress-ng-cpu: exited [1123] (instance 0)
+stress-ng: debug: [1122] process [1123] terminated
+stress-ng: info:  [1122] successful run completed <span class="hljs-keyword">in</span> 20.12s
+</div></code></pre>
+<ol start="4">
+<li>Ejecutar de nuevo “stress-ng”, esta vez sin límite de tiempo. Mientras esté en ejecución:</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ stress-ng -c 1
+stress-ng: info:  [1210] defaulting to a 86400 second (1 day, 0.00 secs) run per stressor
+stress-ng: info:  [1210] dispatching hogs: 1 cpu
+</div></code></pre>
+<ul>
+<li>Usar una señal para pausar su ejecución. En la terminal 2:</li>
+</ul>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ pgrep stress-ng
+1210
+1211
+
+maitane@as2-maitane:~$ <span class="hljs-built_in">kill</span> -SIGSTOP 1210
+
+maitane@as2-maitane:~$ top
+  1211 maitane   20   0   94228   7212   3728 R 100.0   0.4   2:29.70 stress-ng-cpu
+</div></code></pre>
+<ul>
+<li>Usar una señal para reanudar su ejecución.</li>
+</ul>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ <span class="hljs-built_in">kill</span> -SIGCONT 1210
+</div></code></pre>
+<ul>
+<li>Reducir la prioridad del proceso al mínimo. ¿Cambia algo? En la terminal 2:</li>
+</ul>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo renice -n 19 -p 1211
+1211 (process ID) old priority 0, new priority 19
+</div></code></pre>
+<p>No cambia gran cosa ya que no hay más procesos en ejecución, además de que disponemos de 2 núcleos de CPU. Pero si otros procesos entran en ejecución y se llenan ambos núcleos, se le daría prioridad a los demás procesos.</p>
+<ol start="5">
+<li>Detectar qué proceso tiene la mayor prioridad en el sistema. Buscar cuál es el propósito de ese proceso.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ top
+</div></code></pre>
+<p>Una vez dentro de TOP:</p>
+<ul>
+<li>Presiona la tecla F (mayúscula) para acceder al menú de ordenación de campos.</li>
+<li>Utiliza las teclas de flecha para moverte hacia arriba o hacia abajo y resaltar el campo que deseas utilizar para la ordenación.</li>
+<li>En este caso, selecciona &quot;PR&quot; para ordenar por el valor priority</li>
+<li>Selecciona 's' para guardar la selección y luego 'q'</li>
+</ul>
+<p>Una vez hecho esto el proceso con mayor prioridad es:</p>
+<pre class="hljs"><code><div> 34 root      39  19       0      0      0 S   0.0   0.0   0:00.00 khugepaged
+</div></code></pre>
+<p>Se refiere a un componente del kernel de Linux llamado &quot;khugepaged&quot;, responsable de la gestión de la memoria en sistemas Linux y se encarga de optimizar el uso de la memoria mediante el escaneo y la liberación de páginas de memoria que no se utilizan con frecuencia o que pueden ser fusionadas para reducir el uso de la memoria física.</p>
+<ol start="6">
+<li>Limitar el máximo tiempo de uso de CPU a 5 minutos para todos los usuarios.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ <span class="hljs-built_in">ulimit</span> -a
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 7808
+max locked memory       (kbytes, -l) 65536
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 1024
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) 8192
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 7808
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+maitane@as2-maitane:~$ <span class="hljs-built_in">ulimit</span> -t 300
+maitane@as2-maitane:~$ <span class="hljs-built_in">ulimit</span> -a
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 7808
+max locked memory       (kbytes, -l) 65536
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 1024
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) 8192
+cpu time               (seconds, -t) 300
+max user processes              (-u) 7808
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+</div></code></pre>
+<ol start="7">
+<li>Crear un fichero crontab para el usuario root con las siguientes tareas:</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo crontab -e
+no crontab <span class="hljs-keyword">for</span> root - using an empty one
+
+Select an editor.  To change later, run <span class="hljs-string">'select-editor'</span>.
+  1. /bin/nano        &lt;---- easiest
+  2. /usr/bin/vim.basic
+  3. /usr/bin/vim.tiny
+  4. /bin/ed
+
+Choose 1-4 [1]: 1
+crontab: installing new crontab
+</div></code></pre>
+<ul>
+<li>Ejecutar el comando date cada minuto y escribir su salida estándar al fichero /tmp/date.log (se debe escribir al final del fichero cada vez). Dentro del fichero crontab:</li>
+</ul>
+<pre class="hljs"><code><div>* * * * * date &gt;&gt; /tmp/date.log
+</div></code></pre>
+<ul>
+<li>Borrar el directorio /tmp los primeros 5 días de cada mes a las 17:00. Dentro del fichero crontab:</li>
+</ul>
+<pre class="hljs"><code><div>0 17 1-5 * * rm -r /tmp/*
+</div></code></pre>
+<ol start="8">
+<li>Comprobar que las tareas de cron funcionan correctamente (ver el fichero /tmp/date.log).</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ cat /tmp/date.log
+Fri Sep 29 11:07:01 UTC 2023
+Fri Sep 29 11:08:01 UTC 2023
+</div></code></pre>
+<p>Las siguientes tareas del laboratorio son relativas a las conexiones de red y se propone trabajar en parejas. Seréis A y B, y cada uno utilizará su propia máquina virtual:</p>
+<ol start="9">
+<li>Usando netcat, A abre una conexión a la escucha en el puerto 3000. Si fuese necesario abrir puertos de Google Cloud, se recomienda este tutorial. B se conecta a ese puerto y escribe el mensaje “Hola A”. Tras recibirlo, en la misma conexión, B escribe “Hola B” y cierra la conexión.</li>
+</ol>
+<ul>
+<li>nc: Es el comando Netcat.</li>
+<li>-l: Indica a Netcat que debe estar en modo de escucha.</li>
+<li>-p 3000: Especifica el número de puerto que deseas abrir.</li>
+</ul>
+<p><strong>A:</strong></p>
+<pre class="hljs"><code><div>nc -l -p 3000
+</div></code></pre>
+<p><strong>B:</strong></p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ nc 34.171.168.81 3000
+
+</div></code></pre>
+<ol start="10">
+<li>El comando “dd if=/dev/urandom” sirve para generar números aleatorios. A abre una conexión a la escucha en el puerto 3000 y B envía números aleatorios a esa conexión de A. Sin cerrar la conexión, A y B utilizan nethogs para comprobar la tasa de bytes enviados y recibidos en cada parte. ¿Los valores coinciden? Después, A cierra la conexión.</li>
+</ol>
+<p><strong>A:</strong></p>
+<pre class="hljs"><code><div>nc -l -p 3000
+sudo nethogs
+</div></code></pre>
+<p><img src="./nethogsaingeru.jpg" alt="Nethogs en la terminal de A"></p>
+<p><strong>B:</strong></p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ dd <span class="hljs-keyword">if</span>=/dev/urandom | nc 34.171.168.81 3000
+maitane@as2-maitane:~$ sudo nethogs
+
+</div></code></pre>
+<p><img src="./nethogs.PNG" alt="Nethogs en la terminal de B"></p>
+<ol start="11">
+<li>A crea localmente un fichero con texto aleatorio. Utilizar netcat para que A envíe este fichero a B. ¿Qué diferencia hay entre utilizar netcat y scp para enviar ficheros entre diferentes máquinas?</li>
+</ol>
+<p><strong>B:</strong></p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ nc -l -p 3000 &gt; archivoAingeru
+
+</div></code></pre>
+<p><strong>A:</strong></p>
+<pre class="hljs"><code><div>dd <span class="hljs-keyword">if</span>=/dev/urandom of=/home/aingeru/random_data bs=1M count=2048
+nc 34.173.208.253 3000 &lt; /home/aingeru/random_data
+</div></code></pre>
+<p><span style="font-size: 30px;">Gestión de los registros del sistema</span></p>
+<p>En esta parte del laboratorio se proponer trabajar con los registros (logs) del sistema.</p>
+<ol>
+<li>Leer la página de manual de logger. ¿Con qué parámetro se indica la prioridad de los mensajes?</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ man logger
+
+        ...
+-p, --priority priority
+    Enter the message into the <span class="hljs-built_in">log</span> with the specified priority.  The priority may be specified numerically or as a facility.level pair.  For example, -p local3.info  logs  the message as informational <span class="hljs-keyword">in</span> the local3 facility. The default is user.notice.
+        ...
+</div></code></pre>
+<ol>
+<li>Utilizando la línea de comandos, enviar el mensaje “Hola Mundo de Logs” al fichero /var/log/syslog. Comprobar que se ha hecho correctamente.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo logger <span class="hljs-string">"Hola Mundo de Logs"</span>
+
+maitane@as2-maitane:~$ tail -n 5 /var/<span class="hljs-built_in">log</span>/syslog
+Sep 29 15:08:01 as2-maitane CRON[1203]: (root) CMD (date &gt;&gt; /tmp/date.log)
+Sep 29 15:09:01 as2-maitane CRON[1206]: (root) CMD (date &gt;&gt; /tmp/date.log)
+Sep 29 15:10:01 as2-maitane CRON[1209]: (root) CMD (date &gt;&gt; /tmp/date.log)
+Sep 29 15:10:44 as2-maitane maitane: Hola Mundo de Logs
+Sep 29 15:11:01 as2-maitane CRON[1214]: (root) CMD (date &gt;&gt; /tmp/date.log)
+
+</div></code></pre>
+<ol start="3">
+<li>Enviar todos los mensajes de nivel “debug” generados por el servicio sshd al fichero /var/log/ssh.log. Este fichero debe haber sido creado anteriormente y estar vacío. Configurar el servicio sshd para que funcione en modo “debug” y comprobar el efecto que tiene en el fichero ssh.log.
+<strong>Enviar todos los mensajes de nivel “debug” generados por el servicio sshd al fichero /var/log/ssh.log:</strong></li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment"># Creamos el fichero que se nos pide</span>
+maitane@as2-maitane:~$ sudo touch /var/<span class="hljs-built_in">log</span>/ssh.log
+
+<span class="hljs-comment"># Abirmos el fichero de configuración para indicar las acciones</span>
+maitane@as2-maitane:~$ sudo nano /etc/rsyslog.d/50-default.conf
+
+</div></code></pre>
+<p>Añadimos en el fichero:</p>
+<pre class="hljs"><code><div>auth.debug                      -/var/<span class="hljs-built_in">log</span>/ssh.log
+</div></code></pre>
+<p>Cambiamos los permisos y los grupos para que coincidan con los de syslog (el fichero por defecto para escribir los log)</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ ls -l /var/<span class="hljs-built_in">log</span>
+maitane@as2-maitane:~$ sudo chown syslog:adm /var/<span class="hljs-built_in">log</span>/ssh.log
+</div></code></pre>
+<p>Reiniciamos para que se apliquen cambios y CONFIGURAMOS EL MODO DEBUG:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Reiniciamos el servicio rsyslog</span>
+maitane@as2-maitane:~$ sudo service rsyslog restart
+
+<span class="hljs-comment"># CONFIGURAMOS EL MODO DEBUG</span>
+<span class="hljs-comment"># Editamos el archivo de configuración ssh</span>
+maitane@as2-maitane:~$ sudo vim /etc/ssh/sshd_config 
+<span class="hljs-comment"># Buscamos la línea 'LogLevel INFO' y la sustituimos por 'LogLevel DEBUG'</span>
+
+<span class="hljs-comment"># Reiniciamos el sistema sshd</span>
+maitane@as2-maitane:~$ sudo systemctl restart sshd
+
+<span class="hljs-comment"># Comprobamos que se esté escribiendo el fichero</span>
+maitane@as2-maitane:~$ cat /var/<span class="hljs-built_in">log</span>/ssh.log
+</div></code></pre>
+<p><em>Link</em>: https://access.redhat.com/documentation/es-es/red_hat_enterprise_linux/6/html/deployment_guide/s1-basic_configuration_of_rsyslog</p>
+<ol start="4">
+<li>Configurar la rotación de logs (fichero /var/log/syslog) para que se guarden de manera mensual y comprimida, y para que todos los logs generados en un año se guarden en un directorio llamado
+/var/log/syslog.old.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo nano /etc/logrotate.d/rsyslog
+</div></code></pre>
+<p>Dentro del archivo escribir lo siguiente:</p>
+<pre class="hljs"><code><div>/var/<span class="hljs-built_in">log</span>/syslog
+{
+        rotate 12
+        monthly
+        compress
+        olddir /var/<span class="hljs-built_in">log</span>/syslog.old
+        createolddir 0640 syslog adm
+}
+</div></code></pre>
+<p>Y luego:???????????????????????????</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo cat /etc/cron.daily/logrotate
+<span class="hljs-meta">#!/bin/sh
+</span>
+<span class="hljs-comment"># skip in favour of systemd timer</span>
+<span class="hljs-keyword">if</span> [ -d /run/systemd/system ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">exit</span> 0
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-comment"># this cronjob persists removals (but not purges)</span>
+<span class="hljs-keyword">if</span> [ ! -x /usr/sbin/logrotate ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">exit</span> 0
+<span class="hljs-keyword">fi</span>
+
+/usr/sbin/logrotate /etc/logrotate.conf
+EXITVALUE=$?
+<span class="hljs-keyword">if</span> [ <span class="hljs-variable">$EXITVALUE</span> != 0 ]; <span class="hljs-keyword">then</span>
+    /usr/bin/logger -t logrotate <span class="hljs-string">"ALERT exited abnormally with [<span class="hljs-variable">$EXITVALUE</span>]"</span>
+<span class="hljs-keyword">fi</span>
+<span class="hljs-built_in">exit</span> <span class="hljs-variable">$EXITVALUE</span>
+maitane@as2-maitane:~$ sudo /etc/cron.daily/logrotate
+</div></code></pre>
+<p><span style="font-size: 30px;">Monitorización en Google Cloud Platform</span></p>
+<p>La primera tarea es crear un Dashboard personalizado que monitorice vuestra máquina virtual. Este deberá
+contener (al menos) los siguientes elementos:</p>
+<ul>
+<li>Un gráfico de líneas que visualice el promedio de consumo de CPU.
+<img src="./Media_uso_CPU.PNG" alt="Gráfico de líneas CPU"></li>
+<li>Un gráfico “gauge” que visualice el espacio utilizado en disco.
+<img src="./37.PNG" alt="Uso del disco al principio (partición /dev/sda1)"></li>
+<li>Un panel que visualice los últimos mensajes de Log.
+<img src="./widgets.PNG" alt="Paneles"></li>
+</ul>
+<p>Una vez creado, enviad un mensaje al log del sistema desde la Shell y verificar que se visualiza en el panel de este
+nuevo Dashboard.</p>
+<p>Para enviar mensajes log al panel que los recoge:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ logger -p error <span class="hljs-string">"Error para GCC"</span>
+maitane@as2-maitane:~$ logger <span class="hljs-string">"Notificacion para GCC"</span>
+</div></code></pre>
+<p><img src="./logs.PNG" alt="Logs enviados con logger"></p>
+<p>La segunda tarea es configurar una alerta personalizada, para que Google Cloud nos avise cuando el espacio libre de una partición se reduzca:</p>
+<ol>
+<li>Comprobar cuánto espacio libre hay en la partición /dev/sda1 de vuestra máquina virtual.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        20G  7.0G   13G  36% /
+</div></code></pre>
+<ol start="2">
+<li>Configurad una alerta en Google Cloud para que se os envíe un e-mail cuando el espacio en la partición /dev/sda1 de vuestra máquina virtual sea un 5% mayor del actual (p.e. si ahora mismo está usado un 15%, cuando supere el 20%).</li>
+</ol>
+<ul>
+<li>Accede a Google Cloud bash: https://bash.cloud.google.com/</li>
+<li>Navega a la página &quot;Monitoring&quot;.</li>
+<li>Selecciona &quot;Alertas&quot; para configurar una nueva alerta.</li>
+<li>Haz clic en &quot;Crear política de alerta&quot;.</li>
+<li>Añade la métrica y sigue los pasos</li>
+<li>Haz clic en &quot;Guardar condición&quot; para guardar la condición de alerta.</li>
+</ul>
+<ol start="3">
+<li>Utilizando el comando dd cread uno (o varios) ficheros en la carpeta /tmp de vuestra máquina virtual con datos aleatorios. El tamaño de estos ficheros debe hacer que el uso de partición se incremente hasta superar el umbral establecido en el paso anterior.</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-comment"># Supongamos que deseamos crear un archivo de 2 GB en /tmp</span>
+
+<span class="hljs-comment"># Utiliza dd para crear un archivo de 2 GB lleno de datos aleatorios</span>
+maitane@as2-maitane:~$ dd <span class="hljs-keyword">if</span>=/dev/urandom of=/tmp/archivo_aleatorio bs=1M count=2048
+
+<span class="hljs-comment"># Esto creará un archivo llamado "archivo_aleatorio" en /tmp</span>
+<span class="hljs-comment"># El parámetro "if" especifica la fuente de datos aleatorios (urandom).</span>
+<span class="hljs-comment"># "of" especifica la ubicación y el nombre del archivo.</span>
+<span class="hljs-comment"># "bs" especifica el tamaño del bloque (en este caso, 1M = 1 megabyte).</span>
+<span class="hljs-comment"># "count" especifica cuántos bloques se deben copiar (en este caso, 2048 bloques de 1 megabyte cada uno, lo que da como resultado un archivo de 2 GB).</span>
+
+</div></code></pre>
+<ol start="4">
+<li>Verificad que el incremento de consumo en disco se refleja en el Dashboard creado en el paso anterior.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        20G   12G  7.5G  62% /
+</div></code></pre>
+<p><img src="./39.PNG" alt="Espacio ocupado después de crear ficheros con dd"></p>
+<ol start="5">
+<li>Verificad que habéis recibido uno (o varios) correos de Google Cloud con la alerta.</li>
+</ol>
+<div style="text-align:center;">
+        <img src="./aviso.PNG" alt="Notificación de alerta" width="200">
+</div>
+<ol start="6">
+<li>Eliminad los ficheros creados en el paso 3 y la alerta creada en el paso 2.</li>
+</ol>
+<p><span style="font-size: 30px;">Evaluación del rendimiento</span></p>
+<p>En esta parte del laboratorio se propone para medir el rendimiento de la CPU del sistema. Si dispones de un equipo personal con Linux, se recomienda hacer las pruebas en tu propio equipo en lugar de utilizar la máquina virtual de GCP para obtener resultados relativos a un hardware no virtualizado.</p>
+<p>Las primeras pruebas serán para medir el rendimiento de la CPU con el benchmark Firestarter:</p>
+<ol>
+<li>Descargar el benchmark desde la web oficial: https://tu-dresden.de/zih/firestarter</li>
+</ol>
+<p>Descargar el .tar.gz del link que aparece en el apartado de descargas y (en el mismo equipo):</p>
+<pre class="hljs"><code><div>maitane@DESKTOP-O2F7CUF:~$ tar -xzvf ./FIRESTARTER_2-0-tar.gz
+</div></code></pre>
+<ol start="2">
+<li>Ejecutarlo durante 30 segundos, haciendo que muestre información adicional (un “report” de rendimiento). Buscar los parámetros necesarios para ello. ¿Qué valor de GFLOP/s obtienes? Este valor es una métrica de la capacidad de cómputo de tu CPU.</li>
+</ol>
+<pre class="hljs"><code><div> maitane@DESKTOP-O2F7CUF:~$ ./FIRESTARTER -r -t 30
+
+    ...
+    performance report:
+
+    Thread 0: 38981825 iterations, tsc_delta: 84182558134
+    Thread 1: 39285287 iterations, tsc_delta: 84431592831
+    Thread 2: 38800020 iterations, tsc_delta: 84335714468
+    Thread 3: 38946067 iterations, tsc_delta: 84390635089
+    Thread 4: 38896785 iterations, tsc_delta: 84493481137
+    Thread 5: 38940220 iterations, tsc_delta: 84494196325
+    Thread 6: 39390025 iterations, tsc_delta: 84608969369
+    Thread 7: 39371664 iterations, tsc_delta: 84498526140
+
+    total iterations: 312611893
+    runtime: 30.19 seconds (84609268733 cycles)
+
+    estimated floating point performance: 169.02 GFLOPS
+    estimated memory bandwidth*: 9.28 GB/s
+
+    * this estimate is highly unreliable <span class="hljs-keyword">if</span> --<span class="hljs-keyword">function</span> is used <span class="hljs-keyword">in</span> order to select a <span class="hljs-keyword">function</span> that is not optimized <span class="hljs-keyword">for</span> your architecture, or <span class="hljs-keyword">if</span> FIRESTARTER is executed on an unsupported architecture!
+</div></code></pre>
+<p>Salen <strong>169.02 GFLOPS</strong>.</p>
+<ol start="3">
+<li>La mayoría de CPUs modernas tienen varios conjuntos de instrucciones que permiten obtener diferentes niveles de rendimiento. Firestarter es capaz de detectar los conjuntos de instrucciones disponibles en la CPU y usarlos para evaluar su capacidad. Encuentra el parámetro que muestra los tipos disponibles en tu CPU.</li>
+</ol>
+<pre class="hljs"><code><div>maitane@DESKTOP-O2F7CUF:~$ ./FIRESTARTER --list-instruction-groups
+ available instruction-groups <span class="hljs-keyword">for</span> payload AVX512:
+  L1_BROADCAST,L1_L,L1_LS,L1_S,L2_L,L2_LS,L2_S,L3_L,L3_LS,L3_P,L3_S,RAM_L,RAM_LS,RAM_P,RAM_S,REG
+</div></code></pre>
+<ol start="4">
+<li>Crea un script que ejecute Firestarter con cada tipo de instrucción disponible en tu CPU durante 30 segundos y reporte el mayor valor de GFLOP/s obtenido. Esté será el mayor rendimiento que el benchmark es capaz de obtener en tu CPU.
+El script en cuestión (4.sh):</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash
+</span>
+max=0.0
+valor=0.0
+
+list=$(./FIRESTARTER --list-instruction-groups | grep -A1 <span class="hljs-string">"available instruction-groups for payload AVX512:"</span> | awk <span class="hljs-string">'NR==2'</span>)
+IFS=<span class="hljs-string">','</span> <span class="hljs-built_in">read</span> -ra instructions &lt;&lt;&lt; <span class="hljs-string">"<span class="hljs-variable">$list</span>"</span>
+
+<span class="hljs-keyword">for</span> instruction <span class="hljs-keyword">in</span> <span class="hljs-string">"<span class="hljs-variable">${instructions[@]}</span>"</span>; <span class="hljs-keyword">do</span>
+        svalor=$(./FIRESTARTER --run-instruction-groups <span class="hljs-variable">$instruction</span>:1 -r -t 30 | grep <span class="hljs-string">"estimated floating point performance"</span> | cut -d <span class="hljs-string">' '</span> -f5)
+        valor=$( <span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$svalor</span>"</span> | bc -l)
+        resultado=$(<span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$valor</span> &gt; <span class="hljs-variable">$max</span>"</span> | bc -l)
+
+        <span class="hljs-keyword">if</span> [ <span class="hljs-string">"<span class="hljs-variable">$resultado</span>"</span> -eq 1 ]; <span class="hljs-keyword">then</span>
+                max=<span class="hljs-string">"<span class="hljs-variable">$valor</span>"</span>
+        <span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">done</span>
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"El valor máximo de GFLOPS es: <span class="hljs-variable">$max</span>"</span>
+</div></code></pre>
+<p>Una vez creado lo ejecutamos de la siguiente manera y el resultado que nos da es:</p>
+<pre class="hljs"><code><div>maitane@DESKTOP-O2F7CUF:~$ chmod +x ./4.sh
+maitane@DESKTOP-O2F7CUF:~$ ./4.sh
+    ...
+    El valor máximo de GFLOPS es: 141.08
+</div></code></pre>
+<ol start="5">
+<li>Crea un script similar al anterior, pero que devuelva el máximo valor obtenido para el ancho de banda de memoria (cuántos GB/s).</li>
+</ol>
+<p>El script (5.sh):</p>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash</span>
+list=$(./FIRESTARTER --list-instruction-groups | grep -A1 <span class="hljs-string">"available instruction-groups for payload AVX&gt;max=0.0
+valor=0.0
+IFS=',' read -ra instructions &lt;&lt;&lt; "</span><span class="hljs-variable">$list</span><span class="hljs-string">"
+for instruction in "</span><span class="hljs-variable">${instructions[@]}</span><span class="hljs-string">"; do
+        svalor=<span class="hljs-variable">$(./FIRESTARTER --run-instruction-groups $instruction:1 -r -t 30 | grep "estimated memory bandwidth" | cut -d ' ' -f4)</span>
+        valor=<span class="hljs-variable">$( echo "$svalor" | bc -l)</span>
+        resultado=<span class="hljs-variable">$(echo "$valor &gt; $max" | bc -l)</span>
+        if [ "</span><span class="hljs-variable">$resultado</span><span class="hljs-string">" -eq 1 ]; then
+                max="</span><span class="hljs-variable">$valor</span><span class="hljs-string">"
+        fi
+        echo "</span><span class="hljs-variable">$instruction</span><span class="hljs-string">"
+done
+echo "</span>El valor máximo para el ancho de banda de memoria es: <span class="hljs-variable">$max</span><span class="hljs-string">"
+</span></div></code></pre>
+<p>Para ejecutarlo:</p>
+<pre class="hljs"><code><div>maitane@DESKTOP-O2F7CUF:~$ chmod +x 5.sh
+maitane@DESKTOP-O2F7CUF:~$ ./5.sh
+
+    ...
+    El valor máximo para el ancho de banda de memoria es: 46.46
+</div></code></pre>
+
+</body>
+</html>
