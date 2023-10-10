@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>comandos.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<p>Expresiones regulares:</p>
+<ul>
+<li>*    → Reemplazar todos los caracteres</li>
+<li>?     → Reemplazar un único caracter</li>
+<li>[]    → Reemplazar por un rango numérico</li>
+<li>^     → Inicio</li>
+<li>&amp;     → Se añade al final de un comadno (ejecutable por ej.) para dejarlo runeando en segundo plano</li>
+</ul>
+<p>Comandos básicos:</p>
+<pre class="hljs"><code><div>adduser nombreUsuario
+        <span class="hljs-comment"># Añade un usuario con el nombre que le pongas</span>
+
+awk <span class="hljs-string">'{print $1,$NF}'</span> data.txt <span class="hljs-comment"># Muestra la 1ª y última columa de data.txt</span>
+        <span class="hljs-comment"># Sintaxis general: patrón { acción }</span>
+                <span class="hljs-comment"># Patrón → Cuándo aplicar la acción</span>
+                <span class="hljs-comment"># Procesa el texto línea a línea</span>
+                <span class="hljs-comment"># Si el patrón es cierto, se aplica la acción para esa línea</span>
+                <span class="hljs-comment"># Si no se proporciona patrón, se aplicación la acción a todas las líneas</span>
+                <span class="hljs-comment"># Ejemplo: awk 'END { print NR }’ data.txt → Cuenta el nº de líneas de data.tx</span>
+
+badblocks <span class="hljs-comment"># Detecta y excluye sectores inválidos del disco</span>
+
+bc:
+numero_float=$(<span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$cadena</span>"</span> | bc -l) <span class="hljs-comment"># Pasa un string a float. Si quisieramos pasarlo a int:</span>
+numero_entero=$(expr <span class="hljs-string">"<span class="hljs-variable">$cadena</span>"</span> + 0)
+
+chrt --rr 20 ./miPrograma <span class="hljs-comment"># Lanza un proceso con una prioridad de tiempo real (PR=-21) → Calcular: PR = - 1 - prioridad_tiempo_real</span>
+
+cp -a   <span class="hljs-comment"># Para replicar contenido de disco a nivel de fichero (copia de seguridad)</span>
+
+crontab <span class="hljs-comment"># Programar tareas en base a 5 parametros</span>
+        <span class="hljs-comment"># -e    Programar</span>
+        <span class="hljs-comment"># -u    Para que usuario</span>
+        <span class="hljs-comment"># -l    Listar tareas (ver contenido del crontab)</span>
+
+cut -d <span class="hljs-string">' '</span> -f2 archivo
+    <span class="hljs-comment"># Corta las líneas del fichero en columnas</span>
+    <span class="hljs-comment"># -d → En base a qué cortar las líneas en cada columna</span>
+    <span class="hljs-comment"># -f → Que valores mostrar (qué columna)</span>
+
+dd <span class="hljs-keyword">if</span>=/dev/urandom of=/tmp/archivo_aleatorio bs=1M count=2048 <span class="hljs-comment"># Crear ficheros de contenido X</span>
+        <span class="hljs-comment"># if    Tipo de contenido (random en este caso)</span>
+        <span class="hljs-comment"># of    Donde se crea</span>
+        <span class="hljs-comment"># bs    Tamaño del bloque de datos</span>
+        <span class="hljs-comment"># count Cuántos bloques de datos</span>
+                <span class="hljs-comment"># 1M * 2048 = 2GB</span>
+
+du -sh /home    <span class="hljs-comment"># Muestra el tamaño total del directorio /home</span>
+
+fsck <span class="hljs-comment"># Detección y corrección (no siempre) de problemas de corrupción en el sistema de ficheros</span>
+
+iostat –p /dev/sda <span class="hljs-comment"># Estadísticas de uso y tasas de transferencia de los dispositivos de almacenamiento</span>
+        <span class="hljs-comment"># -p → Disco</span>
+
+last <span class="hljs-comment"># Ultimas conexiones al sistema</span>
+
+ln -s   <span class="hljs-comment"># Crear enlace a directorio (-s simbólico)</span>
+
+ls -hrt
+    <span class="hljs-comment"># h → Tamaño de ficheros en KB/MB</span>
+    <span class="hljs-comment"># r → Reverse order</span>
+    <span class="hljs-comment"># t → Order chronologicaly</span>
+
+lsof <span class="hljs-comment"># Lista archivos que están siendo utilizados por procesos en el sistema</span>
+        <span class="hljs-comment"># -i            Información sobre conexiones de red abiertas</span>
+        <span class="hljs-comment"># -p &lt;PID&gt;      Archivos abiertos por un proceso específico</span>
+        <span class="hljs-comment"># -u &lt;usuario&gt;: Archivos abiertos por un usuario específico</span>
+        <span class="hljs-comment"># -c &lt;nombre&gt;:  Archivos abiertos por un proceso específico identificado por su nombre</span>
+        <span class="hljs-comment"># -t:           Números de PID en lugar de información detallada</span>
+        <span class="hljs-comment"># -n:           Evita la resolución de nombres de host y puertos → salida más rápida</span>
+        <span class="hljs-comment"># -F &lt;formato&gt;: Especifica un formato de salida personalizado</span>
+
+nice -n 10 ./miScript   <span class="hljs-comment"># Lanzar script o comando con -n prioridad</span>
+
+nohup ./miScriptLargo &amp; <span class="hljs-comment"># Deja runeando un proceso en segundo plano incluso cerrando la SHELL</span>
+
+parted /dev/sdX         <span class="hljs-comment"># Permite copiar, mover, cambiar sistemas de ficheros</span>
+
+passwd nombreUsuario    <span class="hljs-comment"># Cambia la contraseña del usuario</span>
+
+pgrep stress-ng <span class="hljs-comment"># Los PID del nombre del proceso si este esta en ejecución</span>
+
+ps al   <span class="hljs-comment"># More simplified list of running processes</span>
+ps aux  <span class="hljs-comment"># Detailed list of all running processes</span>
+pstree  <span class="hljs-comment"># Arbol de procesos</span>
+
+<span class="hljs-built_in">pwd</span>     <span class="hljs-comment"># Directorio actual</span>
+
+rsync -vazh /home /dev/sdc      <span class="hljs-comment"># Realiza una copia de seguridad de HOME en /dev/sdc</span>
+        <span class="hljs-comment"># -a Mantiene usuarios</span>
+        <span class="hljs-comment"># -z Comprime antes de copiar</span>
+        <span class="hljs-comment"># -h Mostrar tasas de transferencia y tamaños (MB/s en vez de bytes/s)</span>
+
+sed <span class="hljs-string">'s/altro/alto/g'</span> archivo.txt &gt; archivo_modificado.txt <span class="hljs-comment"># Cambia las palabras altro por alto</span>
+        <span class="hljs-comment"># -i →  El fichero de entrada es sobrescrito (no hace falta el &gt;)</span>
+        <span class="hljs-comment"># Para eliminar todas las ocurrencias de una palabra: ‘/altro/d’</span>
+        <span class="hljs-comment"># Mostrar las líneas 2, 3 de todos los ficheros: sed ‘2,3 p’ </span>
+
+sort -t <span class="hljs-string">":"</span> -k3n /etc/passwd <span class="hljs-comment">#ordena en base a:</span>
+        <span class="hljs-comment"># dividida por :</span>
+        <span class="hljs-comment"># k3    significa que se usará el tercer campo </span>
+        <span class="hljs-comment"># n     significa que se realizará una ordenación numérica </span>
+        <span class="hljs-comment"># -r    sería orden inverso</span>
+
+tar -czvf carpeta.tgz miCarpeta     <span class="hljs-comment"># Comprimir</span>
+tar -xzvf carpeta.tgz               <span class="hljs-comment">#Descomprimir </span>
+
+tcpdump -i ens4 -Z unai -w miCaptura <span class="hljs-comment"># Comenzar a capturar tráfico y guardar en un fichero </span>
+        <span class="hljs-comment"># tcpdump -i &lt;interfaz&gt; -Z &lt;usuario&gt; -w &lt;ficheroCaptura&gt; </span>
+
+telnet IP puerto <span class="hljs-comment"># Comprobar si un servicio remoto está a la escucha</span>
+
+useradd nombreUsuario
+        <span class="hljs-comment"># Añade usuario (faltan datos porque no los pone automatico. Ej.: password (passwd))</span>
+
+userdel nombreUsuario   <span class="hljs-comment"># Borrar usuario por nombre</span>
+
+wc -l   <span class="hljs-comment"># Contar palabras (-l → Líneas en vez de palabras) </span>
+</div></code></pre>
+<p><span style="font-size: 40px;">LABORATORIO 1</span></p>
+<p><span style="font-size: 30px;">     1</span></p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ cal <span class="hljs-comment"># Visualizar calendario (mes) </span>
+
+<span class="hljs-comment"># Listar los 5 ficheros más nuevos de la carpeta /etc (que no sean carpetas):</span>
+maitane@as2-maitane:~$ ls -ltr /etc | grep -v <span class="hljs-string">'^d'</span> | tail -n 5  <span class="hljs-comment"># grep -v, --invert-match   Invert the sense of matching, to select non-matching lines.</span>
+
+<span class="hljs-comment"># Cambiar los permisos para que sólo el usuario propietario tenga capacidad de leer y escribir:</span>
+maitane@as2-maitane:~/lab1$ chmod 700 calendario.txt 
+maitane@as2-maitane:~/lab1$ chmod u-x calendario.txt
+
+<span class="hljs-comment"># Cual es el nuestro Shell de inicio:</span>
+maitane@as2-maitane:~/lab1$ <span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span>
+
+<span class="hljs-comment"># Buscar todos los archivos que sean propiedad de tu usuario en el sistema y listarlos en forma extendida (con toda la información):</span>
+maitane@as2-maitane:~/lab1$ sudo find / -user root -<span class="hljs-built_in">exec</span> ls -l {} \;
+    <span class="hljs-comment"># -exec  → Le indica a find que ejecute un comando en cada archivo o directorio que coincida con los criterios de búsqueda.</span>
+    <span class="hljs-comment"># ls -l  → El comando que se ejecuta en cada archivo.</span>
+    <span class="hljs-comment"># {}     → Marcador que find reemplaza con la ruta completa de cada archivo antes de ejecutar el comando.</span>
+    <span class="hljs-comment"># \;     → Esta parte indica el final del comando -exec para que find sepa dónde termina</span>
+
+</div></code></pre>
+<p><span style="font-size: 30px;">     2</span></p>
+<ol>
+<li>Crear un script llamado lsdirs.sh que muestre los directorios contenidos en el directorio actual.<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash</span>
+ <span class="hljs-keyword">for</span> archivo <span class="hljs-keyword">in</span> `ls`; <span class="hljs-keyword">do</span>
+         <span class="hljs-built_in">echo</span> <span class="hljs-variable">$archivo</span>;
+ <span class="hljs-keyword">done</span>
+</div></code></pre>
+</li>
+<li>Crear un script llamado see.sh que reciba un nombre de fichero/directorio como parámetro. Si el nombre corresponde a un fichero, el script muestra el contenido del fichero con more, sino muestra el contenido del directorio con ls.<pre class="hljs"><code><div> <span class="hljs-comment">#!/bin/bash</span>
+ <span class="hljs-keyword">if</span> [ -d <span class="hljs-variable">$1</span> ]; <span class="hljs-keyword">then</span> <span class="hljs-comment"># Comprueba si es un directorio</span>
+         ls <span class="hljs-variable">$1</span>
+ <span class="hljs-keyword">elif</span> [ -f <span class="hljs-variable">$1</span> ]; <span class="hljs-keyword">then</span> <span class="hljs-comment"># Comprueba si es un fichero</span>
+         more <span class="hljs-variable">$1</span>
+ <span class="hljs-keyword">else</span>
+         <span class="hljs-built_in">echo</span> <span class="hljs-string">"prueba de nuevo"</span>
+ <span class="hljs-keyword">fi</span>
+</div></code></pre>
+</li>
+<li>Crear un script que pida al usuario que teclee una palabra y escriba por pantalla el número de caracteres de esa palabra.<pre class="hljs"><code><div> <span class="hljs-comment">#!/bin/bash</span>
+ <span class="hljs-built_in">echo</span> <span class="hljs-string">"Mete una palabra:"</span>
+ <span class="hljs-built_in">read</span> palabra
+ <span class="hljs-built_in">echo</span> <span class="hljs-string">"La palabra <span class="hljs-variable">$palabra</span> tiene una longitud de <span class="hljs-variable">${#palabra}</span>"</span> <span class="hljs-comment"># Longitud</span>
+</div></code></pre>
+</li>
+<li>Crear un script que pida al usuario que teclee una palabra y compruebe si es un comando del sistema o no.<pre class="hljs"><code><div> <span class="hljs-comment">#!/bin/bash</span>
+ <span class="hljs-built_in">echo</span> <span class="hljs-string">"Introduce una palabra:"</span>
+ <span class="hljs-built_in">read</span> palabra
+ <span class="hljs-keyword">if</span>  <span class="hljs-built_in">command</span> -v <span class="hljs-string">"<span class="hljs-variable">$palabra</span>"</span> &gt;/dev/null 2&gt;&amp;1 ; <span class="hljs-keyword">then</span>    <span class="hljs-comment"># Dice si la palabra es un comando</span>
+         <span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$palabra</span> es un comando del sistema."</span>
+ <span class="hljs-keyword">else</span>
+         <span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$palabra</span> NO es un comando del sistema."</span>
+ <span class="hljs-keyword">fi</span>
+</div></code></pre>
+</li>
+<li>Crear un script que cree una carpeta llamada cosas y después cree 100 ficheros vacíos llamados fich<numero>.txt dentro de ella, donde <numero> es un número entre 0 y 99.<pre class="hljs"><code><div> <span class="hljs-comment">#!/bin/bash</span>
+ <span class="hljs-keyword">if</span> [ ! -d cosas ]; <span class="hljs-keyword">then</span> <span class="hljs-comment"># Si no exste el directorio "cosas"</span>
+         mkdir cosas
+ <span class="hljs-keyword">fi</span>
+ <span class="hljs-built_in">cd</span> cosas || <span class="hljs-built_in">exit</span> <span class="hljs-comment"># De ocurrir un error al abrir el directorio se sale del script</span>
+ <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {0..99}; <span class="hljs-keyword">do</span>
+         touch <span class="hljs-string">"fich<span class="hljs-variable">$i</span>.txt"</span>
+ <span class="hljs-keyword">done</span>
+</div></code></pre>
+</li>
+<li>Extender el script anterior para que cada fichero contenga la N-sima línea delmanual de ls (man ls). El fichero fich0.txt tendrá la línea 0 del manual, fich1.txt tendrá la línea 1 del manual, …<pre class="hljs"><code><div> <span class="hljs-comment">#!/bin/bash</span>
+ <span class="hljs-keyword">if</span> [ ! -d cosas2 ]; <span class="hljs-keyword">then</span>
+         mkdir cosas2
+ <span class="hljs-keyword">fi</span>
+
+ i=0
+
+ <span class="hljs-built_in">cd</span> cosas2 || <span class="hljs-built_in">exit</span> <span class="hljs-comment"># De ocurrir un error al abrir el directorio se sale del script</span>
+
+ man ls | <span class="hljs-keyword">while</span> IFS= <span class="hljs-built_in">read</span> -r linea; <span class="hljs-keyword">do</span> <span class="hljs-comment"># Leer cada línea del manual y almacenarla en la variable linea</span>
+             <span class="hljs-comment"># IFS= → evitar que se eliminen los espacios en blanco iniciales y finales de cada línea</span>
+             <span class="hljs-comment"># -r → evitar que se interpreten caracteres especiales de manera especial</span>
+         touch <span class="hljs-string">"fich<span class="hljs-variable">$i</span>.txt"</span>
+         <span class="hljs-built_in">echo</span> <span class="hljs-variable">$linea</span> &gt; <span class="hljs-string">"fich<span class="hljs-variable">$i</span>.txt"</span>
+         ((i++))
+ <span class="hljs-keyword">done</span>
+</div></code></pre>
+</li>
+<li>Crear un script que modifique la extensión de todos los ficheros .txt de un directorio a .t.<pre class="hljs"><code><div> <span class="hljs-comment">#!/bin/bash</span>
+
+ <span class="hljs-keyword">for</span> fichero <span class="hljs-keyword">in</span> *.txt; <span class="hljs-keyword">do</span>
+         <span class="hljs-keyword">if</span> [ -f <span class="hljs-string">"<span class="hljs-variable">$fichero</span>"</span> ]; <span class="hljs-keyword">then</span>
+                 nombre=<span class="hljs-string">"<span class="hljs-variable">${fichero%.txt}</span>"</span> <span class="hljs-comment"># % Elimina la segunda parte después del %</span>
+                 mv <span class="hljs-string">"<span class="hljs-variable">$fichero</span>"</span> <span class="hljs-string">"<span class="hljs-variable">${nombre}</span>.t"</span>
+         <span class="hljs-keyword">fi</span>
+ <span class="hljs-keyword">done</span>
+</div></code></pre>
+</li>
+<li>Crear un script borra.sh que reciba un número indefinido de parámetros (de 0 a 9) y borre el fichero correspondiente a la suma del valor de los parámetros que reciba. Por ejemplo, borra.sh 1 4 5 9, borraría el fichero fich19.txt (1 + 4 + 5 + 9 = 19).<pre class="hljs"><code><div> <span class="hljs-comment">#!/bin/bash</span>
+ suma=0
+ <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-string">"<span class="hljs-variable">$@</span>"</span>; <span class="hljs-keyword">do</span> <span class="hljs-comment"># Itera todos los parámetros que le han pasando</span>
+         suma=$((<span class="hljs-variable">$suma</span>+<span class="hljs-variable">$i</span>))
+ <span class="hljs-keyword">done</span>
+ rm <span class="hljs-string">"fich<span class="hljs-variable">$suma</span>.txt"</span>
+</div></code></pre>
+</li>
+<li>Crear un script orden.sh que muestre el contenido del fichero /etc/passwd ordenado por nombre de usuario, UID o GID. El script recibirá un parámetro que indique cuál de los 3 utilizar como clave de ordenación.</li>
+</ol>
+<pre class="hljs"><code><div> <span class="hljs-comment">#!/bin/bash</span>
+ <span class="hljs-built_in">echo</span> <span class="hljs-string">"Qué clave de ordenación deseas usar: nombre de usuario (1), UID (2) o GID (3):"</span>
+ <span class="hljs-built_in">read</span> clave
+
+ <span class="hljs-keyword">case</span> <span class="hljs-variable">$clave</span> <span class="hljs-keyword">in</span>
+         1)
+                 <span class="hljs-built_in">echo</span> <span class="hljs-string">"Con usuario"</span>
+                 sort -t <span class="hljs-string">":"</span> -k1 /etc/passwd
+                 ;;
+         2)
+                 <span class="hljs-built_in">echo</span> <span class="hljs-string">"Con UID"</span>
+                 sort -t <span class="hljs-string">":"</span> -k3n /etc/passwd
+                 ;;
+         3)
+                 <span class="hljs-built_in">echo</span> <span class="hljs-string">"Con GID"</span>
+                 sort -t <span class="hljs-string">":"</span> -k4n /etc/passwd
+                 ;;
+         *)
+                 <span class="hljs-built_in">echo</span> <span class="hljs-string">"Opción no válida, prueba de nuevo (elige 1, 2 o 3)"</span>
+                 ;;
+ <span class="hljs-keyword">esac</span>
+</div></code></pre>
+<ol start="10">
+<li>Imagina que quieres mandar un e-mail con el mismo cuerpo a varios destinatarios, pero personalizando la primera línea con el nombre de cada uno. Crear un fichero cuerpo.txt con el texto del cuerpo del e-mail y la palabra NOMBRE en cada lugar donde querrías poner el nombre, y un fichero nombres.txt con varios nombres personales. Crear un script que genere varios ficheros con el cuerpo del e-mail personalizado para cada destinatario.</li>
+</ol>
+<pre class="hljs"><code><div> <span class="hljs-comment">#!/bin/bash</span>
+ reemplazar=<span class="hljs-string">"NOMBRE"</span>
+ <span class="hljs-keyword">if</span> [[ -f <span class="hljs-string">"nombres.txt"</span> &amp;&amp; -f <span class="hljs-string">"cuerpo.txt"</span> ]]; <span class="hljs-keyword">then</span>
+         <span class="hljs-keyword">while</span> <span class="hljs-built_in">read</span> -r nombre; <span class="hljs-keyword">do</span>                    <span class="hljs-comment"># -r → evitar que el comando read interprete barras invertidas como caracteres de escape.</span>
+                 <span class="hljs-built_in">echo</span> <span class="hljs-string">"PRIMER EMAIL PARA: <span class="hljs-variable">$nombre</span>"</span>
+                 <span class="hljs-comment"># Buscar el contenido de la variable $reemplazar en el archivo y reemplazarlo por el contenido de la variable $nombre.</span>
+                 <span class="hljs-comment"># El g al final del patrón significa "global" y asegura que todas las coincidencias en una línea se reemplacen, no solo la primera</span>
+                 sed <span class="hljs-string">"s/<span class="hljs-variable">$reemplazar</span>/<span class="hljs-variable">$nombre</span>/g"</span> <span class="hljs-string">"cuerpo.txt"</span> &gt; <span class="hljs-string">"carta_<span class="hljs-variable">$nombre</span>.txt"</span>
+         <span class="hljs-keyword">done</span> &lt; <span class="hljs-string">"nombres.txt"</span>
+ <span class="hljs-keyword">fi</span>
+</div></code></pre>
+<p><span style="font-size: 40px;">LABORATORIO 2</span></p>
+<p><span style="font-size: 30px;">     1</span></p>
+<p>Gestión de particiones:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ lsblk -e7 <span class="hljs-comment"># Muestra las particiones y dónde están montadas</span>
+maitane@as2-maitane:~$ df -h <span class="hljs-comment"># Muestra los sistemas de ficheros</span>
+
+maitane@as2-maitane:~$ sudo cfdisk /dev/sdb <span class="hljs-comment"># Gestionar particiones</span>
+
+maitane@as2-maitane:~$ sudo mount -t ext4 /dev/sdb1 /mnt/disks <span class="hljs-comment"># Montar partición</span>
+        <span class="hljs-comment"># -r    → Montar solo en lectura</span>
+        <span class="hljs-comment"># -l    → Listar</span>
+maitane@as2-maitane:~$ sudo umount /mnt/disks/disc2 <span class="hljs-comment"># Desmontar partición</span>
+</div></code></pre>
+<p>También se puede con:</p>
+<pre class="hljs"><code><div>fdisk /dev/sda
+<span class="hljs-comment"># Algunas opciones: </span>
+        <span class="hljs-comment"># p Ver tabla de particiones de disco</span>
+        <span class="hljs-comment"># n Nueva partición</span>
+        <span class="hljs-comment"># w Escribir nueva tabla de particiones</span>
+        <span class="hljs-comment"># q Salir</span>
+</div></code></pre>
+<p><strong>Para mantener montada una partición con reinicio de la máquine vitual:</strong></p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo cp /etc/fstab /etc/fstab.backup
+
+maitane@as2-maitane:~$ sudo blkid /dev/sdb1
+    /dev/sdb1: UUID=<span class="hljs-string">"91cbda65-64be-4ca2-a4c6-68e82a6662ff"</span> SEC_TYPE=<span class="hljs-string">"ext2"</span> TYPE=<span class="hljs-string">"ext3"</span> PARTUUID=<span class="hljs-string">"32fd36ac-7458-f24c-9fd9-069466eb3e18"</span>
+
+maitane@as2-maitane:~$ sudo nano /etc/fstab <span class="hljs-comment"># EDITAR CONFIGURACION DE MONTAJE</span>
+maitane@as2-maitane:~$ cat /etc/fstab
+    LABEL=cloudimg-rootfs   /        ext4   defaults        0 1
+    LABEL=UEFI      /boot/efi       vfat    <span class="hljs-built_in">umask</span>=0077      0 1
+    UUID=91cbda65-64be-4ca2-a4c6-68e82a6662ff /mnt/disks/disc1 ext3 discard,defaults,nofail 0 2
+</div></code></pre>
+<p>Tamaños particiones:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo resize2fs -M /dev/sdb2 <span class="hljs-comment"># Aumentar al máximo</span>
+maitane@as2-maitane:~$ cfdisk /dev/sdb <span class="hljs-comment"># → TAMBIEN SE PUEDE HACER EL RESIZE AQUI</span>
+</div></code></pre>
+<p><span style="font-size: 30px;">     2: RENDIMIENTO</span></p>
+<p>Fio:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># rwmixread=    PORCENTAJE DE LECTURA</span>
+<span class="hljs-comment"># size=         TAMAÑO</span>
+<span class="hljs-comment"># --filename=   PATH HASTA FICHERO</span>
+sudo fio --randrepeat=1 --ioengine=libaio --direct=1 --gtod_reduce=1 --name=<span class="hljs-built_in">test</span> --bs=4k --iodepth=64 --readwrite=randrw --rwmixread=75 --size=1G --filename=/discoBalanceado/testFile
+</div></code></pre>
+<p><span style="font-size: 30px;">     3: </span></p>
+<p><strong>LVM</strong></p>
+<p>Creación:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Volumenes fisicos</span>
+maitane@as2-maitane:~$ sudo pvcreate -ff /dev/sdb1 /dev/sdb2 /dev/sdc1 <span class="hljs-comment"># -ff forzará la creación del etiquetado físico</span>
+
+<span class="hljs-comment"># Grupo de volumenes fisicos</span>
+maitane@as2-maitane:~$ sudo vgcreate grupoVolumenes /dev/sdb1 /dev/sdb2 /dev/sdc1
+
+<span class="hljs-comment"># Volumen lógico unificado</span>
+maitane@as2-maitane:~$ sudo lvcreate grupoVolumenes -l 100%FREE -n volumenlab2
+
+<span class="hljs-comment"># Formatear volumen a sistema de ficheros:</span>
+maitane@as2-maitane:~$ sudo mkfs.ext4 /dev/grupoVolumenes/volumenlab2
+
+<span class="hljs-comment"># Montar volumen:</span>
+maitane@as2-maitane:~$ sudo mount -t ext4 /dev/grupoVolumenes/volumenlab2
+</div></code></pre>
+<p>Visualización:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo pvdisplay
+
+maitane@as2-maitane:~$ sudo vgdisplay
+
+maitane@as2-maitane:~$ sudo lvdisplay
+</div></code></pre>
+<p>Añadir volumen físico:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Extender el grupo:</span>
+maitane@as2-maitane:~$ sudo vgextend grupoVolumenes /dev/sdc2
+
+<span class="hljs-comment"># Extender el volumen lógico</span>
+maitane@as2-maitane:~$ sudo lvextend -l +100%FREE /dev/grupoVolumenes/volumenlab2
+
+<span class="hljs-comment"># Para hacer que ocupe el total disponible del volumen:</span>
+maitane@as2-maitane:~$ sudo resize2fs -p /dev/mapper/grupoVolumenes-volumenlab2
+
+</div></code></pre>
+<p>Reducir tamaño de volúmenes:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Reduce el volumen del grupo de volumenes</span>
+maitane@as2-maitane:~$ sudo vgreduce grupoVolumenes /dev/sdc2
+
+<span class="hljs-comment"># Reducir el tamaño de un volumen lógico</span>
+maitane@as2-maitane:~$ sudo lvreduce -L 8G -t mi_volumen
+        <span class="hljs-comment"># -L → Nuevo tamaño deseado del volumen lógico</span>
+        <span class="hljs-comment"># -t → Información detallada sobre el proceso de reducción.</span>
+
+</div></code></pre>
+<p>Borrar volumen lógico:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo umount /labo2_lvm
+
+maitane@as2-maitane:~$ sudo lvremove /dev/grupoVolumenes/volumenlab2
+</div></code></pre>
+<p><strong>RAID</strong></p>
+<p>Crear:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Crear RAId de nivel 5 con 3 particiones, llamado md0</span>
+maitane@as2-maitane:~$ sudo mdadm --create /dev/md0 -v --level=5 --raid-devices=3 /dev/sdb1 /dev/sdb2 /dev/sdc1
+
+<span class="hljs-comment"># Formatearlo:</span>
+maitane@as2-maitane:~$ sudo mkfs.ext4 /dev/md0
+
+<span class="hljs-comment"># Montarlo:</span>
+maitane@as2-maitane:~$ sudo mount -t ext4 /dev/md0 /lab2_raid5
+</div></code></pre>
+<p>Visualizar:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo mdadm --detail /dev/md0
+</div></code></pre>
+<p>Monitorizar:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo mdadm --monitor [opciones] /dev/md0
+        <span class="hljs-comment"># Ejemplo de [opciones]: --scan --daemonise --delay=1800</span>
+
+</div></code></pre>
+<p>Generar fallo y solucionarlo:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Generamos el fallo:</span>
+maitane@as2-maitane:~$ sudo mdadm /dev/md0 -f /dev/sdc1
+
+<span class="hljs-comment"># Para arreglarlo:</span>
+<span class="hljs-comment"># 1. Borramos la partición que haya fallado de nuestro sistema RAID:</span>
+maitane@as2-maitane:~$ sudo mdadm /dev/md0 --remove /dev/sdc1
+
+<span class="hljs-comment"># 2. Volvemos a añadirla y que se recupere automáticamente el contenido perdido:</span>
+maitane@as2-maitane:~$ sudo mdadm --add /dev/md0 /dev/sdc1
+
+<span class="hljs-comment"># Monitorizar el proceso de reconstrucción:</span>
+maitane@as2-maitane:~$ cat /proc/mdstat
+</div></code></pre>
+<p>Desmontar y eliminar el dispositivo RAID:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Desmontar:</span>
+maitane@as2-maitane:~$ sudo umount /lab2_raid5
+
+<span class="hljs-comment"># Parar:</span>
+maitane@as2-maitane:~$ sudo mdadm --stop /dev/md0
+
+<span class="hljs-comment"># Limpia la información existente de un dispositivo RAID parado</span>
+maitane@as2-maitane:~$ mdadm --zero-superblock /dev/sdX
+
+<span class="hljs-comment"># Borrar carpeta si necesario</span>
+</div></code></pre>
+<p><span style="font-size: 30px;">     4</span></p>
+<p>Configuración de rsnapshot:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo nano /etc/rsnapshot.conf
+
+<span class="hljs-comment"># Se le da permisos de escritura a otros procesos sobre la carpeta que añadamos en rsnapshot para escritura:</span>
+maitane@as2-maitane:~$ sudo chmod o+w /backups 
+
+<span class="hljs-comment"># Después de escribir:</span>
+maitane@as2-maitane:~$ rsnapshot configtest
+
+<span class="hljs-comment"># Para probar la configuración:</span>
+maitane@as2-maitane:~$ sudo rsnapshot hourly
+</div></code></pre>
+<p>Dentro del fichero entre descomentar y añadir filas debería aparecer algo como esto según la configuración:</p>
+<pre class="hljs"><code><div>snapshot_root           /backups/
+
+        ...
+
+cmd_du                  /usr/bin/du
+cmd_rsnapshot_diff      /usr/bin/rsnapshot-diff
+cmd_ssh                 /usr/bin/ssh
+
+        ...
+
+<span class="hljs-comment">#########################################</span>
+<span class="hljs-comment"># BACKUP LEVELS / INTERVALS #</span>
+<span class="hljs-comment"># Must be unique and in ascending order #</span>
+<span class="hljs-comment"># e.g. alpha, beta, gamma, etc. #</span>
+<span class="hljs-comment">#########################################</span>
+retain hourly 24
+retain daily 7
+retain weekly 4
+
+        ...
+
+<span class="hljs-comment">###############################</span>
+<span class="hljs-comment">### BACKUP POINTS / SCRIPTS ###</span>
+<span class="hljs-comment">###############################</span>
+<span class="hljs-comment"># LOCALHOST</span>
+backup /home/ localhost/
+backup /etc/ localhost/
+backup /var/<span class="hljs-built_in">log</span> localhost/
+ 
+</div></code></pre>
+<p>Para comprobar la diferencia entre una copia de seguridad y la siguiente:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo rsnapshot hourly
+
+<span class="hljs-comment"># REALIZAR CAMBIOS VARIOS</span>
+
+maitane@as2-maitane:~$ sudo rsnapshot hourly
+
+<span class="hljs-comment"># Diferencias entre los dos ficheros creados:</span>
+
+maitane@as2-maitane:~$ rsnapshot-diff -v /backups/hourly.0 /backups/hourly.1
+
+</div></code></pre>
+<p><span style="font-size: 40px;">LABORATORIO 3</span></p>
+<p><span style="font-size: 30px;">     1</span></p>
+<p>Estresar al sistema:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ stress-ng -c 1 -v --timeout 20s
+        <span class="hljs-comment"># -c            Número de CPUs utilizadas (nosotros tenemos dos: lscpu)</span>
+        <span class="hljs-comment"># --timeout     Cuando tiene que parar el proceso</span>
+
+</div></code></pre>
+<p>Ver los procesos y cúanto consumen:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ top
+        <span class="hljs-comment"># Shift f para cambiar el orden prioritario</span>
+</div></code></pre>
+<p>Para enseñar los parámetros PID, nice, priority y CMD de los procesos ordenados en basea a la prioridad:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ ps -eo pid,nice,priority,cmd --sort=priority
+    PID  NI PRI CMD
+     15   - -100 [migration/0]
+</div></code></pre>
+<p>Cambiar la prioridad de un proceso:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo renice -n 19 -p 1211 <span class="hljs-comment"># Se calcula: PR = 20 + NI </span>
+
+</div></code></pre>
+<p>Cambiar limite de uso de las CPU:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ <span class="hljs-built_in">ulimit</span> -a
+maitane@as2-maitane:~$ <span class="hljs-built_in">ulimit</span> -t 300
+maitane@as2-maitane:~$ <span class="hljs-built_in">ulimit</span> -a
+
+<span class="hljs-comment"># Limitar el uso de CPU para un proceso</span>
+maitane@as2-maitane:~$ cpulimit --pid 12345 --<span class="hljs-built_in">limit</span> 50
+
+</div></code></pre>
+<p><strong>NETCAT:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Abrir conexión a la escucha del puerto 3000</span>
+maitane@as2-maitane:~$ nc -l -p 3000 &gt; ArchivoParaRedirigirEntrada.txt
+        <span class="hljs-comment"># -l    Modo escucha (listen)</span>
+        <span class="hljs-comment"># -p    Puerto</span>
+        <span class="hljs-comment"># Se puede hacer sin redirigir</span>
+
+<span class="hljs-comment"># Para saber si esta escuchando</span>
+maitane@as2-maitane:~$ telnet localhost 3000 
+
+<span class="hljs-comment"># Conexion al puerto en otra IP</span>
+maitane@as2-maitane:~$ dd <span class="hljs-keyword">if</span>=/dev/urandom of=/home/user/random_data bs=1M count=2048
+maitane@as2-maitane:~$ nc 34.173.208.253 3000 &lt; /home/user/random_data
+        <span class="hljs-comment"># Se puede hacer sin mandar los datos así (escribiendo a mano tras la conexion)</span>
+
+<span class="hljs-comment"># Monitorear el uso de ancho de banda de procesos individuales:</span>
+maitane@as2-maitane:~$ sudo nethogs
+
+<span class="hljs-comment"># Mandar datos aleatorios a la IP</span>
+maitane@as2-maitane:~$ dd <span class="hljs-keyword">if</span>=/dev/urandom | nc 34.171.168.81 3000
+</div></code></pre>
+<p><span style="font-size: 30px;">     2</span></p>
+<p>Logger:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo logger <span class="hljs-string">"Hola"</span>
+        <span class="hljs-comment"># -p    Priority type</span>
+</div></code></pre>
+<p><strong>Enviar todos los mensajes de nivel “debug” generados por el servicio sshd al fichero /var/log/ssh.log:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Creamos el fichero que se nos pide</span>
+maitane@as2-maitane:~$ sudo touch /var/<span class="hljs-built_in">log</span>/ssh.log
+
+<span class="hljs-comment"># Abirmos el fichero de configuración para indicar las acciones</span>
+maitane@as2-maitane:~$ sudo nano /etc/rsyslog.d/50-default.conf
+
+</div></code></pre>
+<p>Añadimos en el fichero:</p>
+<pre class="hljs"><code><div>auth.debug                      -/var/<span class="hljs-built_in">log</span>/ssh.log
+</div></code></pre>
+<p>Cambiamos los permisos y los grupos para que coincidan con los de syslog (el fichero por defecto para escribir los log)</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ ls -l /var/<span class="hljs-built_in">log</span>
+maitane@as2-maitane:~$ sudo chown syslog:adm /var/<span class="hljs-built_in">log</span>/ssh.log
+</div></code></pre>
+<p>Reiniciamos para que se apliquen cambios y CONFIGURAMOS EL MODO DEBUG:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Reiniciamos el servicio rsyslog</span>
+maitane@as2-maitane:~$ sudo service rsyslog restart
+
+<span class="hljs-comment"># CONFIGURAMOS EL MODO DEBUG</span>
+<span class="hljs-comment"># Editamos el archivo de configuración ssh</span>
+maitane@as2-maitane:~$ sudo vim /etc/ssh/sshd_config 
+<span class="hljs-comment"># Buscamos la línea 'LogLevel INFO' y la sustituimos por 'LogLevel DEBUG'</span>
+
+<span class="hljs-comment"># Reiniciamos el sistema sshd</span>
+maitane@as2-maitane:~$ sudo systemctl restart sshd
+
+<span class="hljs-comment"># Comprobamos que se esté escribiendo el fichero</span>
+maitane@as2-maitane:~$ cat /var/<span class="hljs-built_in">log</span>/ssh.log
+</div></code></pre>
+<p><strong>Configurar la rotación de logs (fichero /var/log/syslog):</strong></p>
+<p>Archivo /etc/rotate.d/rsyslog:</p>
+<pre class="hljs"><code><div>/var/<span class="hljs-built_in">log</span>/syslog
+{
+        rotate 12
+        monthly
+        compress
+        olddir /var/<span class="hljs-built_in">log</span>/syslog.old
+        createolddir 0640 syslog adm <span class="hljs-comment"># En teoria no hace falta porque deberia estar creado</span>
+}
+
+</div></code></pre>
+<p><strong>FIRESTARTER:</strong></p>
+<p>Descargar el benchmark desde la web oficial: https://tu-dresden.de/zih/firestarter</p>
+<p>Tiene un readme.</p>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash</span>
+max=0.0
+valor=0.0
+
+list=$(./FIRESTARTER --list-instruction-groups | grep -A1 <span class="hljs-string">"available instruction groups for payload AVX512:"</span> | awk <span class="hljs-string">'NR==2'</span>)
+
+IFS=<span class="hljs-string">','</span> <span class="hljs-built_in">read</span> -ra instructions &lt;&lt;&lt; <span class="hljs-string">"<span class="hljs-variable">$list</span>"</span>
+
+<span class="hljs-keyword">for</span> instruction <span class="hljs-keyword">in</span> <span class="hljs-string">"<span class="hljs-variable">${instructions[@]}</span>"</span>; <span class="hljs-keyword">do</span>
+
+        svalor=$(./FIRESTARTER --run-instruction-groups <span class="hljs-variable">$instruction</span>:1 -r -t 30 | grep <span class="hljs-string">"estimated floating point performance"</span> | cut -d <span class="hljs-string">' '</span> -f5)
+
+        valor=$( <span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$svalor</span>"</span> | bc -l)
+        resultado=$(<span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$valor</span> &gt; <span class="hljs-variable">$max</span>"</span> | bc -l)
+
+        <span class="hljs-keyword">if</span> [ <span class="hljs-string">"<span class="hljs-variable">$resultado</span>"</span> -eq 1 ]; <span class="hljs-keyword">then</span>
+                max=<span class="hljs-string">"<span class="hljs-variable">$valor</span>"</span>
+        <span class="hljs-keyword">fi</span>
+<span class="hljs-keyword">done</span>
+
+<span class="hljs-built_in">echo</span> <span class="hljs-string">"El valor máximo de GFLOPS es: <span class="hljs-variable">$max</span>"</span>
+
+</div></code></pre>
+<p><span style="font-size: 40px;">LABORATORIO 4</span></p>
+<p><strong>MOSQUITTO</strong></p>
+<p>Instalación:</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo apt install mosquitto mosquitto-clients
+maitane@as2-maitane:~$ service mosquitto status
+</div></code></pre>
+<p>Comandos para Mosquitto:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Publicar en un Broker información:</span>
+maitane@as2-maitane:~$ mosquitto_pub -h 34.173.208.253 -t <span class="hljs-string">"EUR/GBP"</span> -m <span class="hljs-variable">$valor</span>
+        <span class="hljs-comment"># -h    Host</span>
+        <span class="hljs-comment"># -t    Tema del foro</span>
+        <span class="hljs-comment"># -m    Mensaje a publicar</span>
+        <span class="hljs-comment"># -r    El último comentario la aparecera a los subscriptores no conectados en el momento una vez se conecten</span>
+
+<span class="hljs-comment"># Subscribirse a los mensajes del topic datosBroker y reenviarlos al fichero del servidor NFS (ESTE ES EL BROKER)</span>
+maitane@as2-maitane:~$ sudo mosquitto_sub -h localhost -t <span class="hljs-string">"EUR/GBP"</span> &gt; /tmp/carpetaRemota/HistoricoEurGbp.txt
+        <span class="hljs-comment"># -h    Host</span>
+        <span class="hljs-comment"># -t    Tema del foro</span>
+</div></code></pre>
+<p>Configuración Mosquitto:</p>
+<pre class="hljs"><code><div>sudo nano /etc/mosquitto/mosquitto.conf
+        <span class="hljs-comment">## FICHERO /etc/mosquitto/mosquitto.conf ##</span>
+                pid_file /var/run/mosquitto.pid
+                persistence <span class="hljs-literal">true</span>
+                persistence_location /var/lib/mosquitto/
+                log_dest file /var/<span class="hljs-built_in">log</span>/mosquitto/mosquitto.log
+                include_dir /etc/mosquitto/conf.d
+                
+                <span class="hljs-comment"># Estas dos son las líneas que habría que añadir:</span>
+                <span class="hljs-comment"># Escuchando en localhost, puerto 1883</span>
+                listener 1883 0.0.0.0
+                <span class="hljs-comment"># Se permite que todo el mundo pueda entrar</span>
+                allow_anonymous <span class="hljs-literal">true</span>
+                <span class="hljs-comment"># También se pueden configurar usuarios</span>
+        <span class="hljs-comment">####</span>
+
+</div></code></pre>
+<p><strong>NFS</strong></p>
+<p>Instalación:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Cliente:</span>
+maitane@as2-maitane:~$ sudo apt install nfs-common
+
+<span class="hljs-comment"># Servidor:</span>
+maitane@as2-maitane:~$ sudo apt install nfs-kernel-server nfs-common
+</div></code></pre>
+<p>Preparación y configuración de servicio NFS:</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Crear la carpeta donde se almacenaran los datos</span>
+maitane@as2-maitane:~$ sudo mkdir  /datosNfs
+
+<span class="hljs-comment"># Editar el fichero de configuracion</span>
+maitane@as2-maitane:~$ sudo nano /etc/exports
+
+	<span class="hljs-comment">## AÑADIR LAS SIGUIENTES LINEAS ##</span>
+        <span class="hljs-comment"># Le da permisos a una IP sobre una carpeta </span>
+        <span class="hljs-comment"># (esa carpeta también debe tener los permisos necesarios mediante chmod)</span>
+        <span class="hljs-comment"># rw    Read/Write</span>
+        <span class="hljs-comment"># ro    Read only</span>
+	/datosNfs       34.173.208.253(rw)
+	/datosNfs       34.172.134.50(ro)
+	<span class="hljs-comment">####</span>
+
+<span class="hljs-comment"># Comprobar que el archivo de configuracion es correcto</span>
+maitane@as2-maitane:~$ exportfs -ra
+
+<span class="hljs-comment"># Aplicar la configuracion de NFS</span>
+maitane@as2-maitane:~$ sudo exportfs -v
+
+<span class="hljs-comment"># Reiniciar el servicio</span>
+maitane@as2-maitane:~$ sudo service nfs-kernel-server restart
+
+<span class="hljs-comment"># Crear la carpeta para los datos del Broker</span>
+maitane@as2-maitane:~$ sudo touch datosBroker
+
+<span class="hljs-comment"># Permitir a otros usuarios la escritura en el archivo</span>
+maitane@as2-maitane:~$ sudo chmod o+w datosBroker
+</div></code></pre>
+<p>Ahora para que un servidor web recoja esos datos, solo tiene que montar la carpeta del servidor NFS donde le convenga (tiene que tener su IP con los permisos que hemos especificado en el servidor NFS):</p>
+<pre class="hljs"><code><div>maitane@as2-maitane:~$ sudo mount -t nfs 35.224.232.153:/datosNfs /tmp/carpetaRemota
+</div></code></pre>
+
+</body>
+</html>
